@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Terms of Use for CrimeWatch - Learn about your rights and responsibilities when using our crime reporting and visualization platform.">
+    <title>Terms of Use | Crime Reporting</title>
+    <!-- Preload theme CSS to avoid flash of unstyled content -->
+    <script>
+        // Immediately detect and apply theme before page renders
+        (function() {
+            // Check local storage or system preference
+            var savedTheme = localStorage.getItem('theme');
+            if (!savedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                savedTheme = 'dark';
+            }
+            savedTheme = savedTheme || 'light';
+
+            // Apply theme class to document immediately
+            document.documentElement.classList.remove('dark-theme', 'light-theme');
+            document.documentElement.classList.add(savedTheme + '-theme');
+            
+            document.body.classList.remove('dark-theme', 'light-theme');
+            document.body.classList.add(savedTheme + '-theme');
+            
+            // Preload the correct theme CSS file
+            var link = document.getElementById('theme-style');
+            if (!link) {
+                link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.id = 'theme-style';
+                document.head.appendChild(link);
+            }
+            
+            // Set correct theme path based on current location
+            var themePath = '';
+            var currentPath = window.location.pathname;
+            
+            // Handle different path depths
+            if (currentPath.includes('/pages/')) {
+                if (currentPath.split('/').filter(Boolean).length > 2) {
+                    // Nested subdirectory (like /pages/something/page.html)
+                    themePath = '../../assets/css/themes/';
+                } else {
+                    // First level subdirectory (like /pages/page.html)
+                    themePath = '../assets/css/themes/';
+                }
+            } else {
+                // Root directory
+                themePath = 'assets/css/themes/';
+            }
+            
+            link.href = themePath + savedTheme + '.css';
+            
+            // Add data attribute to body for easier theme detection
+            document.body.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/pages/terms.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="../assets/css/pages/page-header-fix.css">
+    <!-- Theme style link is now handled by the inline script above -->
+    <!-- Component loader script -->
+    <script src="../assets/js/component-loader.js"></script>
+</head>
+<body>
+    <!-- Header placeholder - will be filled by component-loader.js -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-image">
+                <picture>
+                    <source media="(max-width: 600px)" srcset="https://source.unsplash.com/600x400/?document,contract">
+                    <source media="(max-width: 1024px)" srcset="https://source.unsplash.com/1024x600/?legal,document">
+                    <img src="https://source.unsplash.com/1600x600/?agreement,legal" alt="Terms of Use" class="hero-img">
+                </picture>
+                <div class="hero-overlay">
+                    <div class="container">
+                        <h1 class="animate__animated animate__fadeIn">Terms of Use</h1>
+                        <p class="animate__animated animate__fadeIn animate__delay-1s">Guidelines for using the Crime Reporting platform</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terms Content Section -->
+        <section class="terms-content-section">
+            <div class="container">
+                <!-- Introduction Section -->
+                <div class="terms-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <h2>1. Introduction</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>Welcome to Crime Reporting. These Terms of Use govern your use of our website, mobile applications, and services (collectively, the "Platform"). By accessing or using our Platform, you agree to be bound by these Terms.</p>
+                        
+                        <p>Please read these Terms carefully before using the Platform. If you do not agree to these Terms, you must not access or use our Platform. We may modify these Terms at any time, and such modifications shall be effective immediately upon posting on the Platform. Your continued use of the Platform following any modifications indicates your acceptance of the modified Terms.</p>
+                        
+                        <p><strong>Last Updated:</strong> October 25, 2023</p>
+                    </div>
+                </div>
+                
+                <!-- Definitions Section -->
+                <div class="terms-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <h2>2. Definitions</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>Throughout these Terms, we use certain defined terms:</p>
+                        
+                        <ul class="terms-list">
+                            <li><strong>"Account"</strong> means the account you create to access certain features of the Platform.</li>
+                            <li><strong>"Content"</strong> means all information, text, graphics, photos, videos, data, and other materials uploaded, downloaded, or appearing on the Platform.</li>
+                            <li><strong>"User"</strong> means any individual who accesses or uses the Platform.</li>
+                            <li><strong>"Report"</strong> means any crime incident report submitted through the Platform.</li>
+                            <li><strong>"We," "us," and "our"</strong> refer to Crime Reporting and its affiliates.</li>
+                            <li><strong>"You" and "your"</strong> refer to any User of the Platform.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Account Registration Section -->
+                <div class="terms-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <h2>3. Account Registration</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>To access certain features of the Platform, you may need to register for an account. When registering, you agree to:</p>
+                        
+                        <ul class="terms-list">
+                            <li>Provide accurate, current, and complete information</li>
+                            <li>Maintain and promptly update your information</li>
+                            <li>Keep your password secure and confidential</li>
+                            <li>Notify us immediately of any unauthorized use of your account</li>
+                            <li>Accept responsibility for all activities that occur under your account</li>
+                        </ul>
+                        
+                        <p>We reserve the right to suspend or terminate your account if any information provided during registration or thereafter proves to be inaccurate, false, or outdated.</p>
+                    </div>
+                </div>
+                
+                <!-- User Conduct Section -->
+                <div class="terms-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <h2>4. User Conduct</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>When using the Platform, you agree not to:</p>
+                        
+                        <ul class="terms-list">
+                            <li>Submit false, misleading, or fraudulent crime reports</li>
+                            <li>Use the Platform for any illegal purpose or in violation of any local, state, national, or international law</li>
+                            <li>Harass, abuse, or harm another person</li>
+                            <li>Impersonate any person or entity or falsely state or misrepresent your affiliation with a person or entity</li>
+                            <li>Interfere with or disrupt the Platform or servers or networks connected to the Platform</li>
+                            <li>Attempt to gain unauthorized access to any portion of the Platform or any other accounts, computer systems, or networks</li>
+                            <li>Post content that is defamatory, obscene, or otherwise objectionable</li>
+                            <li>Use the Platform to send unsolicited or unauthorized advertising or promotional materials</li>
+                            <li>Collect or store personal data about other users without their consent</li>
+                            <li>Upload or transmit viruses or other malicious code</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Content Submissions Section -->
+                <div class="terms-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <h2>5. Content Submissions</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>By submitting content to the Platform, including crime reports, comments, or other materials, you:</p>
+                        
+                        <ul class="terms-list">
+                            <li>Grant us a non-exclusive, worldwide, royalty-free, perpetual, irrevocable license to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, and display such content throughout the world in any media</li>
+                            <li>Represent and warrant that you own or have the necessary rights to such content and that the content does not infringe upon the rights of any third party</li>
+                            <li>Acknowledge that all reports are subject to review and may be edited, removed, or rejected at our sole discretion</li>
+                            <li>Understand that your submission may be made available to law enforcement agencies where appropriate</li>
+                        </ul>
+                        
+                        <p>We take no responsibility and assume no liability for any content posted by you or any third party. We reserve the right, but are not obligated, to monitor and edit or remove any content provided on the Platform.</p>
+                    </div>
+                </div>
+                
+                <!-- Intellectual Property Section -->
+                <div class="terms-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <h2>6. Intellectual Property</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>The Platform and its original content, features, and functionality are owned by Crime Reporting and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.</p>
+                        
+                        <p>You may not copy, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Platform, except for:</p>
+                        
+                        <ul class="terms-list">
+                            <li>Your computer temporarily storing copies of such materials in RAM incidental to your accessing and viewing those materials</li>
+                            <li>Store files that are automatically cached by your Web browser for display enhancement purposes</li>
+                            <li>Print or download one copy of a reasonable number of pages of the Platform for your own personal, non-commercial use and not for further reproduction, publication, or distribution</li>
+                        </ul>
+                        
+                        <p>You must not:</p>
+                        <ul class="terms-list">
+                            <li>Modify copies of any materials from the Platform</li>
+                            <li>Use any illustrations, photographs, video or audio sequences, or any graphics separately from the accompanying text</li>
+                            <li>Delete or alter any copyright, trademark, or other proprietary rights notices from copies of materials from the Platform</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Disclaimers and Limitations Section -->
+                <div class="terms-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <h2>7. Disclaimers and Limitations</h2>
+                    </div>
+                    <div class="section-content">
+                        <p><strong>Disclaimer of Warranties:</strong> The Platform is provided "as is" and "as available" without any warranties of any kind, either express or implied. We disclaim all warranties, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+                        
+                        <p><strong>Accuracy of Information:</strong> We do not warrant that the information presented on or through the Platform is accurate, complete, or current. Crime reports submitted by users are not verified for accuracy by default and should not be treated as official police reports.</p>
+                        
+                        <p><strong>Limitation of Liability:</strong> In no event shall Crime Reporting, its directors, employees, partners, agents, suppliers, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or other intangible losses, resulting from your access to or use of (or inability to access or use) the Platform.</p>
+                        
+                        <p><strong>Indemnification:</strong> You agree to defend, indemnify, and hold harmless Crime Reporting and its affiliates from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees arising out of or relating to your violation of these Terms or your use of the Platform.</p>
+                    </div>
+                </div>
+                
+                <!-- Privacy Section -->
+                <div class="terms-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <h2>8. Privacy</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>Your privacy is important to us. Please review our <a href="privacy-policy.html">Privacy Policy</a>, which also governs your use of the Platform, to understand our practices regarding the collection, use, and disclosure of your information.</p>
+                    </div>
+                </div>
+                
+                <!-- Termination Section -->
+                <div class="terms-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <h2>9. Termination</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>We may terminate or suspend your account and bar access to the Platform immediately, without prior notice or liability, for any reason whatsoever, including, without limitation, if you breach these Terms.</p>
+                        
+                        <p>Upon termination, your right to use the Platform will immediately cease. If you wish to terminate your account, you may simply discontinue using the Platform or delete your account through the account settings.</p>
+                        
+                        <p>All provisions of these Terms which by their nature should survive termination shall survive, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.</p>
+                    </div>
+                </div>
+                
+                <!-- Governing Law Section -->
+                <div class="terms-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <h2>10. Governing Law</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which Crime Reporting is established, without regard to its conflict of law provisions.</p>
+                        
+                        <p>Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect.</p>
+                    </div>
+                </div>
+                
+                <!-- Contact Information Section -->
+                <div class="terms-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <h2>11. Contact Information</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>If you have any questions about these Terms, please contact us at:</p>
+                        
+                        <div class="contact-info">
+                            <p><strong>Email:</strong> <a href="mailto:legal@crimereporting.com">legal@crimereporting.com</a></p>
+                            <p><strong>Postal Address:</strong><br>
+                            Crime Reporting Legal Department<br>
+                            123 Safety Street<br>
+                            Secureville, SV 12345</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terms Acceptance Section -->
+        <section class="terms-acceptance-section" data-aos="fade-up">
+            <div class="container">
+                <div class="acceptance-card">
+                    <div class="acceptance-content">
+                        <h2>Acceptance of Terms</h2>
+                        <p>By using the Crime Reporting platform, you acknowledge that you have read, understood, and agree to be bound by these Terms of Use.</p>
+                        <div class="button-group">
+                            <a href="../index.html" class="btn btn-primary">I Accept</a>
+                            <a href="javascript:history.back()" class="btn btn-outline">Go Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Last Updated Section -->
+        <section class="last-updated-section">
+            <div class="container">
+                <div class="last-updated-content" data-aos="fade-up">
+                    <p>These Terms of Use were last updated on: <strong>October 25, 2023</strong></p>
+                    <p>Previous versions of our Terms are archived and available upon request.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scroll to Top Button -->
+        <button id="scroll-to-top" aria-label="Scroll to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </main>
+
+    <!-- Footer placeholder - will be filled by component-loader.js -->
+    <div id="footer-placeholder"></div>
+
+    <!-- JavaScript Files -->
+    <script src="../assets/js/theme-toggle.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Handle scroll to top button
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            if (scrollToTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        scrollToTopBtn.classList.add('visible');
+                    } else {
+                        scrollToTopBtn.classList.remove('visible');
+                    }
+                });
+                
+                scrollToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

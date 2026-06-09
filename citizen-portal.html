@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Crime - CrimeWatch</title>
+    <!-- Preload theme CSS to avoid flash of unstyled content -->
+    <script>
+        // Immediately detect and apply theme before page renders
+        (function() {
+            // Check local storage or system preference
+            var savedTheme = localStorage.getItem('theme');
+            if (!savedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                savedTheme = 'dark';
+            }
+            savedTheme = savedTheme || 'light';
+
+            // Apply theme class to document immediately
+            document.documentElement.classList.remove('dark-theme', 'light-theme');
+            document.documentElement.classList.add(savedTheme + '-theme');
+            
+            document.body.classList.remove('dark-theme', 'light-theme');
+            document.body.classList.add(savedTheme + '-theme');
+            
+            // Preload the correct theme CSS file
+            var link = document.getElementById('theme-style');
+            if (!link) {
+                link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.id = 'theme-style';
+                document.head.appendChild(link);
+            }
+            
+            // Set correct theme path based on current location
+            var themePath = '';
+            var currentPath = window.location.pathname;
+            
+            // Handle different path depths
+            if (currentPath.includes('/pages/')) {
+                if (currentPath.split('/').filter(Boolean).length > 2) {
+                    // Nested subdirectory (like /pages/something/page.html)
+                    themePath = '../../assets/css/themes/';
+                } else {
+                    // First level subdirectory (like /pages/page.html)
+                    themePath = '../assets/css/themes/';
+                }
+            } else {
+                // Root directory
+                themePath = 'assets/css/themes/';
+            }
+            
+            link.href = themePath + savedTheme + '.css';
+            
+            // Add data attribute to body for easier theme detection
+            document.body.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/citizen-portal.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/form-map.css">
+    <link rel="stylesheet" href="assets/css/media-preview.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+          crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <!-- Component loader script -->
+    <script src="assets/js/component-loader.js"></script>
+</head>
+<body>
+    <!-- Header placeholder - will be filled by component-loader.js -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <!-- Enhanced Hero Section with Animated Elements -->
+        <section class="enhanced-hero-section">
+            <div class="hero-particles" id="particles-js"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge animate__animated animate__fadeInDown">
+                        <i class="fas fa-shield-alt"></i> Trusted & Secure Reporting
+                    </div>
+                    <h1 class="animate__animated animate__fadeIn">Report a Crime</h1>
+                    <p class="animate__animated animate__fadeIn animate__delay-1s">Your information helps keep our community safe. All reports are confidential and secured with end-to-end encryption.</p>
+                    
+                    <div class="hero-features animate__animated animate__fadeIn animate__delay-2s">
+                        <div class="hero-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <span>Secure & Anonymous</span>
+                        </div>
+                        <div class="hero-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <span>Location Tracking</span>
+                        </div>
+                        <div class="hero-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <span>Photo Evidence</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-animation animate__animated animate__fadeInRight animate__delay-1s">
+                    <div class="crime-report-animation">
+                        <div class="report-device">
+                            <div class="report-screen">
+                                <div class="report-form-animation">
+                                    <div class="animation-form-field"></div>
+                                    <div class="animation-form-field"></div>
+                                    <div class="animation-form-field"></div>
+                                    <div class="animation-form-btn"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="floating-element floating-element-1">
+                            <div class="floating-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                        </div>
+                        <div class="floating-element floating-element-2">
+                            <div class="floating-icon">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                        </div>
+                        <div class="floating-element floating-element-3">
+                            <div class="floating-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="report-status-animation">
+                            <div class="status-circle"></div>
+                            <div class="status-text">Report Submitted</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-wave">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="var(--bg-primary)" fill-opacity="1" d="M0,256L48,240C96,224,192,192,288,192C384,192,480,224,576,224C672,224,768,192,864,186.7C960,181,1056,203,1152,202.7C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- How to Report Section with Steps -->
+        <section class="how-to-report-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Simple Steps to Report a Crime</h2>
+                    <p>Follow these easy steps to submit your report quickly and securely</p>
+                </div>
+                
+                <div class="steps-container" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>Fill the Form</h3>
+                        <p>Complete the form below with as much detail as possible about the incident</p>
+                    </div>
+                    
+                    <div class="step-connector">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3>Mark Location</h3>
+                        <p>Pinpoint the exact location of the incident on the interactive map</p>
+                    </div>
+                    
+                    <div class="step-connector">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-icon">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <h3>Upload Evidence</h3>
+                        <p>Add photos or videos that might help with the investigation</p>
+                    </div>
+                    
+                    <div class="step-connector">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>Submit Report</h3>
+                        <p>Review your information and submit your secure report</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Report Section with Enhanced Form -->
+        <section class="report-section">
+            <div class="container">
+                <div class="form-container">
+                    <form id="crime-report-form" class="report-form" data-aos="fade-up">
+                        <div class="form-intro">
+                            <div class="form-icon">
+                                <img src="assets/img/icons/report.svg" alt="Report Form">
+                            </div>
+                            <div class="form-heading">
+                                <h2>Crime Report Form</h2>
+                                <p>Fill out the details below. Required fields are marked with *</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-progress">
+                            <div class="progress-bar">
+                                <div class="progress-inner" style="width: 25%"></div>
+                            </div>
+                            <div class="progress-steps">
+                                <div class="progress-step active" data-step="1">
+                                    <div class="step-indicator">1</div>
+                                    <span>Personal Info</span>
+                                </div>
+                                <div class="progress-step" data-step="2">
+                                    <div class="step-indicator">2</div>
+                                    <span>Crime Details</span>
+                                </div>
+                                <div class="progress-step" data-step="3">
+                                    <div class="step-indicator">3</div>
+                                    <span>Location</span>
+                                </div>
+                                <div class="progress-step" data-step="4">
+                                    <div class="step-indicator">4</div>
+                                    <span>Evidence</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section active" data-step="1">
+                            <h3>Personal Information</h3>
+                            <p>Your personal information will remain confidential</p>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fullName" class="form-label">Full Name *</label>
+                                    <input type="text" id="fullName" name="fullName" class="form-control" required placeholder="Enter your full name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" id="email" name="email" class="form-control" required placeholder="Enter your email">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone number (optional)">
+                                </div>
+                                <div class="form-group">
+                                    <label for="witness" class="form-label">Are you a witness? *</label>
+                                    <select id="witness" name="witness" class="form-control" required>
+                                        <option value="">Select an option</option>
+                                        <option value="yes">Yes, I witnessed the crime</option>
+                                        <option value="no">No, I'm reporting on behalf of someone else</option>
+                                        <option value="victim">I am a victim</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-primary next-step">Next Step <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="form-section" data-step="2">
+                            <h3>Crime Details</h3>
+                            <p>Provide as much detail as possible about the incident</p>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="crimeType" class="form-label">Type of Crime *</label>
+                                    <select id="crimeType" name="crimeType" class="form-control" required>
+                                        <option value="">Select crime type</option>
+                                        <option value="theft">Theft</option>
+                                        <option value="robbery">Robbery</option>
+                                        <option value="assault">Assault</option>
+                                        <option value="vandalism">Vandalism</option>
+                                        <option value="burglary">Burglary</option>
+                                        <option value="fraud">Fraud</option>
+                                        <option value="harassment">Harassment</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="crimeDate" class="form-label">Date of Incident *</label>
+                                    <input type="date" id="crimeDate" name="crimeDate" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="crimeTime" class="form-label">Approximate Time</label>
+                                    <input type="time" id="crimeTime" name="crimeTime" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="otherCrimeType" class="form-label">If other, please specify</label>
+                                    <input type="text" id="otherCrimeType" name="otherCrimeType" class="form-control" placeholder="Specify crime type if 'Other' was selected">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="crimeDescription" class="form-label">Description of the Incident *</label>
+                                <textarea id="crimeDescription" name="crimeDescription" class="form-control" rows="5" required placeholder="Provide details about what happened, including descriptions of any suspects or vehicles involved"></textarea>
+                            </div>
+                            
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-outline prev-step"><i class="fas fa-arrow-left"></i> Previous</button>
+                                <button type="button" class="btn btn-primary next-step">Next Step <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="form-section" data-step="3">
+                            <h3>Location Information</h3>
+                            <p>Use the map to pinpoint the exact location</p>
+                            
+                                                        <div class="location-search-container">                                <div class="form-group">                                    <label for="address" class="form-label">Search Address or Location</label>                                    <div class="input-with-icon">                                        <i class="fas fa-map-marker-alt"></i>                                        <input type="text" id="address" name="address" class="form-control" placeholder="Enter street address, neighborhood, city, or landmark">                                    </div>                                </div>                                                                <button type="button" id="search-location-btn" class="btn btn-primary btn-search-location">                                    <i class="fas fa-search"></i> <span class="btn-text">Find Location</span>                                </button>                            </div>
+                            
+                            <div class="map-container">
+                                <div class="map-controls">
+                                    <button type="button" class="map-control-btn" id="zoom-in" title="Zoom in">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <button type="button" class="map-control-btn" id="zoom-out" title="Zoom out">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="map-control-btn" id="reset-map" title="Reset map">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                    <button type="button" class="map-control-btn" id="my-location" title="Use my location">
+                                        <i class="fas fa-location-arrow"></i>
+                                    </button>
+                                </div>
+                                <div id="location-map" class="location-map"></div>
+                                <div class="map-tooltip">Click anywhere on the map to set the incident location</div>
+                            </div>
+                            
+                            <div class="location-details">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="latitude" class="form-label">Latitude</label>
+                                        <input type="text" id="latitude" name="latitude" class="form-control location-input" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="longitude" class="form-label">Longitude</label>
+                                        <input type="text" id="longitude" name="longitude" class="form-control location-input" readonly>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="manual-address" class="form-label">Address Details (Optional)</label>
+                                    <textarea id="manual-address" name="manual-address" class="form-control" placeholder="Add any additional address details like building name, floor number, etc."></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-outline prev-step"><i class="fas fa-arrow-left"></i> Previous</button>
+                                <button type="button" class="btn btn-primary next-step">Next Step <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="form-section" data-step="4">
+                            <h3>Evidence</h3>
+                            <p>Upload any photos or videos related to the incident</p>
+                            
+                            <div class="form-group">
+                                <label for="evidence" class="form-label">Upload Evidence (images/videos)</label>
+                                <div class="file-upload">
+                                    <input type="file" id="evidence" name="evidence" multiple accept="image/*,video/*">
+                                    <label for="evidence" class="file-upload-label">
+                                        <div class="upload-icon">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                        </div>
+                                        <h4 class="upload-text">Drag & drop files or click to browse</h4>
+                                        <p class="upload-hint">Upload up to 5 photos or videos showing evidence related to the incident</p>
+                                        <div class="upload-formats">
+                                            <span class="format-badge">JPEG</span>
+                                            <span class="format-badge">PNG</span>
+                                            <span class="format-badge">GIF</span>
+                                            <span class="format-badge">MP4</span>
+                                            <span class="format-badge">MOV</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div id="file-preview" class="file-preview"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="confirm" name="confirm" required>
+                                    <label for="confirm">I confirm that the information provided is true and accurate to the best of my knowledge. *</label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="contact" name="contact">
+                                    <label for="contact">I am willing to be contacted by authorities for further information.</label>
+                                </div>
+                            </div>
+
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-outline prev-step"><i class="fas fa-arrow-left"></i> Previous</button>
+                                <button type="submit" class="btn btn-primary btn-submit"><i class="fas fa-paper-plane"></i> Submit Report</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="form-sidebar" data-aos="fade-left">
+                    <div class="sidebar-card">
+                        <h3>Why Report?</h3>
+                        <p>Your report helps us identify crime patterns and allocate resources effectively to ensure community safety.</p>
+                    </div>
+                    
+                    <div class="sidebar-card">
+                        <h3>What Happens Next</h3>
+                        <ul>
+                            <li>Your report is reviewed by authorities</li>
+                            <li>Verified reports appear on crime maps</li>
+                            <li>Data helps prevent future crimes</li>
+                            <li>You may be contacted if more information is needed</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-card emergency">
+                        <h3>Emergency?</h3>
+                        <p>If this is an emergency or crime in progress, please call 911 immediately instead of using this form.</p>
+                        <a href="tel:911" class="btn btn-danger">Call 911</a>
+                    </div>
+                    
+                    <div class="sidebar-card support-card">
+                        <h3>Need Help?</h3>
+                        <p>If you need assistance completing this form, our support team is available:</p>
+                        <div class="support-contact">
+                            <div class="support-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="support-info">
+                                <h4>Support Hotline</h4>
+                                <p><a href="tel:+18001234567">1-800-123-4567</a></p>
+                            </div>
+                        </div>
+                        <div class="support-hours">
+                            <i class="fas fa-clock"></i> Available 24/7
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Data Privacy Section -->
+        <section class="data-privacy-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Your Data Privacy & Security</h2>
+                    <p>We take data protection seriously</p>
+                </div>
+                
+                <div class="privacy-cards" data-aos="fade-up">
+                    <div class="privacy-card">
+                        <div class="privacy-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>End-to-End Encryption</h3>
+                        <p>All data transmitted through our platform is encrypted using industry-standard protocols to ensure maximum security.</p>
+                    </div>
+                    
+                    <div class="privacy-card">
+                        <div class="privacy-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h3>Anonymous Reporting</h3>
+                        <p>We offer options for anonymous reporting while still allowing authorities to follow up on important cases.</p>
+                    </div>
+                    
+                    <div class="privacy-card">
+                        <div class="privacy-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Secure Storage</h3>
+                        <p>All report data is securely stored with restricted access limited to authorized personnel only.</p>
+                    </div>
+                    
+                    <div class="privacy-card">
+                        <div class="privacy-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h3>Clear Policies</h3>
+                        <p>Our transparent data policies ensure you always know how your information is being used.</p>
+                    </div>
+                </div>
+                
+                <div class="privacy-disclaimer" data-aos="fade-up">
+                    <p><i class="fas fa-info-circle"></i> For more information about our data practices, please read our <a href="#">Privacy Policy</a>.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Community Impact</h2>
+                    <p>Real stories from community members who made a difference by reporting</p>
+                </div>
+                
+                <div class="swiper testimonial-swiper" data-aos="fade-up">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-quote">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p class="testimonial-text">The online reporting system was incredibly easy to use. After witnessing suspicious activity in my neighborhood, I submitted a detailed report with photos. The authorities responded within 24 hours and successfully identified the individuals involved.</p>
+                                <div class="testimonial-author">
+                                    <img src="assets/img/testimonial/test-1.jpg" alt="John D.">
+                                    <div class="author-info">
+                                        <h4>John D.</h4>
+                                        <p>Community Member</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-quote">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p class="testimonial-text">As a neighborhood watch coordinator, this platform has transformed how we work with local police. The ability to report and track incidents in real-time has made our community significantly safer over the past year.</p>
+                                <div class="testimonial-author">
+                                    <img src="assets/img/testimonial/test-2.jpg" alt="Sarah M.">
+                                    <div class="author-info">
+                                        <h4>Sarah M.</h4>
+                                        <p>Neighborhood Watch Coordinator</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-quote">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p class="testimonial-text">I was hesitant at first, but the anonymous reporting option gave me the confidence to report a recurring issue in my area. The interactive map made it easy to pinpoint the exact location, and the situation was resolved within a week.</p>
+                                <div class="testimonial-author">
+                                    <img src="/assets/img/testimonial/test3.jpg" alt="Michael R.">
+                                    <div class="author-info">
+                                        <h4>Michael R.</h4>
+                                        <p>Resident</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-quote">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p class="testimonial-text">I was hesitant at first, but the anonymous reporting option gave me the confidence to report a recurring issue in my area. The interactive map made it easy to pinpoint the exact location, and the situation was resolved within a week.</p>
+                                <div class="testimonial-author">
+                                    <img src="/assets/img/testimonial/test-4.jpg" alt="Michael R.">
+                                    <div class="author-info">
+                                        <h4>Michael R.</h4>
+                                        <p>Resident</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer placeholder - will be filled by component-loader.js -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Form Submission Modal -->
+    <div id="form-submission-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" title="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-icon success">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="100">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h2>Report Submitted Successfully</h2>
+            <p>Thank you for your report. It has been submitted successfully and will be reviewed by our team.</p>
+            
+            <div class="reference-number-container">
+                <div class="ref-label">Reference Number</div>
+                <span id="reference-number">CR-12345</span>
+                <button id="copy-reference" class="copy-btn" title="Copy to clipboard">
+                    <i class="fas fa-copy"></i> Copy Reference
+                </button>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn btn-primary close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet.js JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
+            crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    
+    <!-- Other scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="assets/js/theme-toggle.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/data-connector.js"></script>
+    <script src="assets/js/form-handler.js"></script>
+    <script src="assets/js/map-form.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script src="assets/js/testimonial-slider.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the map
+            initReportMap();
+            
+            // Initialize AOS animations
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            
+            // Initialize particles.js for hero background
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": {
+                            "value": 80,
+                            "density": {
+                                "enable": true,
+                                "value_area": 800
+                            }
+                        },
+                        "color": {
+                            "value": "#ffffff"
+                        },
+                        "shape": {
+                            "type": "circle",
+                            "stroke": {
+                                "width": 0,
+                                "color": "#000000"
+                            }
+                        },
+                        "opacity": {
+                            "value": 0.5,
+                            "random": false
+                        },
+                        "size": {
+                            "value": 3,
+                            "random": true
+                        },
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 150,
+                            "color": "#ffffff",
+                            "opacity": 0.4,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 2,
+                            "direction": "none",
+                            "random": false,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "grab"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        }
+                    },
+                    "retina_detect": true
+                });
+            }
+            
+            // Initialize Swiper for testimonials
+            const testimonialSwiper = new Swiper('.testimonial-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                    }
+                }
+            });
+            
+            // Apply theme to the body
+            function applyTheme() {
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                document.body.classList.remove('dark-theme', 'light-theme');
+                document.body.classList.add(savedTheme + '-theme');
+                document.body.setAttribute('data-theme', savedTheme);
+                
+                // Update map theme if map is initialized
+                if (typeof updateMapTheme === 'function') {
+                    updateMapTheme();
+                }
+            }
+            
+            // Listen for theme changes
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'theme') {
+                    applyTheme();
+                }
+            });
+            
+            // Apply initial theme
+            applyTheme();
+            
+            // Handle copy reference number functionality
+            const copyBtn = document.getElementById('copy-reference');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function() {
+                    const refNumber = document.getElementById('reference-number').textContent;
+                    
+                    // Create a temporary input element to copy from
+                    const tempInput = document.createElement('input');
+                    tempInput.value = refNumber;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    
+                    try {
+                        // Execute copy command
+                        document.execCommand('copy');
+                        
+                        // Show success state
+                        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        copyBtn.classList.add('copied');
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                            copyBtn.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Copy failed:', err);
+                    }
+                    
+                    // Remove temp input
+                    document.body.removeChild(tempInput);
+                });
+            }
+            
+            // Make submit button pulse when confirmation is checked
+            const confirmCheckbox = document.getElementById('confirm');
+            if (confirmCheckbox) {
+                confirmCheckbox.addEventListener('change', function() {
+                    const submitBtn = document.querySelector('.btn-submit');
+                    if (submitBtn) {
+                        if (this.checked) {
+                            submitBtn.classList.add('ready');
+                        } else {
+                            submitBtn.classList.remove('ready');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

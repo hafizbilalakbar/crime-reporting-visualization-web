@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CrimeWatch Help Center - Get assistance with crime reporting, account management, and using our interactive crime map.">
+    <title>Help Center | CrimeWatch</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/pages/help-center.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" id="theme-style" href="../assets/css/themes/light.css">
+    <link rel="stylesheet" href="../assets/css/pages/page-header-fix.css">
+    <!-- Component loader script -->
+    <script src="../assets/js/component-loader.js"></script>
+</head>
+<body>
+    <!-- Header placeholder - will be filled by component-loader.js -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-image">
+                <picture>
+                    <source media="(max-width: 600px)" srcset="https://source.unsplash.com/600x400/?help,support">
+                    <source media="(max-width: 1024px)" srcset="https://source.unsplash.com/1024x600/?support,team">
+                    <img src="https://source.unsplash.com/1600x600/?help,support" alt="Help Center" class="hero-img">
+                </picture>
+                <div class="hero-overlay">
+                    <div class="container">
+                        <h1 class="animate__animated animate__fadeIn">Help Center</h1>
+                        <p class="animate__animated animate__fadeIn animate__delay-1s">Find guides, tutorials, and support for using CrimeWatch</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Help Search Section -->
+        <section class="help-search-section">
+            <div class="container">
+                <div class="search-container" data-aos="fade-up">
+                    <h2>How can we help you today?</h2>
+                    <div class="search-box">
+                        <input type="text" placeholder="Search for help articles..." class="search-input">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="popular-searches">
+                        <p>Popular searches:</p>
+                        <div class="search-tags">
+                            <a href="#reporting" class="search-tag">Report a crime</a>
+                            <a href="#map" class="search-tag">Using the map</a>
+                            <a href="#account" class="search-tag">Account settings</a>
+                            <a href="#privacy" class="search-tag">Privacy concerns</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Help Categories Section -->
+        <section class="help-categories-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Browse Help Topics</h2>
+                    <p>Select a category to find the help you need</p>
+                </div>
+
+                <div class="categories-grid">
+                    <!-- Getting Started Category -->
+                    <div class="category-card" data-aos="fade-up">
+                        <div class="category-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Getting Started</h3>
+                        <ul class="category-links">
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Creating an account</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Platform overview</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Navigation guide</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Community guidelines</a></li>
+                        </ul>
+                        <a href="#" class="view-all">View all articles <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <!-- Reporting Incidents Category -->
+                    <div class="category-card" data-aos="fade-up" data-aos-delay="100" id="reporting">
+                        <div class="category-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>Reporting Incidents</h3>
+                        <ul class="category-links">
+                            <li><a href="#"><i class="fas fa-angle-right"></i> How to file a report</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Uploading evidence</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Anonymous reporting</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Tracking your report</a></li>
+                        </ul>
+                        <a href="#" class="view-all">View all articles <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <!-- Map Visualization Category -->
+                    <div class="category-card" data-aos="fade-up" data-aos-delay="200" id="map">
+                        <div class="category-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3>Map Visualization</h3>
+                        <ul class="category-links">
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Navigating the map</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Understanding heatmaps</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Filtering crime data</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Exporting map data</a></li>
+                        </ul>
+                        <a href="#" class="view-all">View all articles <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <!-- Account Management Category -->
+                    <div class="category-card" data-aos="fade-up" data-aos-delay="300" id="account">
+                        <div class="category-icon">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <h3>Account Management</h3>
+                        <ul class="category-links">
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Updating profile information</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Password reset</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Notification preferences</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Deleting your account</a></li>
+                        </ul>
+                        <a href="#" class="view-all">View all articles <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <!-- Privacy & Security Category -->
+                    <div class="category-card" data-aos="fade-up" data-aos-delay="400" id="privacy">
+                        <div class="category-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Privacy & Security</h3>
+                        <ul class="category-links">
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Data protection</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Anonymous reporting</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Two-factor authentication</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Privacy settings</a></li>
+                        </ul>
+                        <a href="#" class="view-all">View all articles <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <!-- Troubleshooting Category -->
+                    <div class="category-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="category-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Troubleshooting</h3>
+                        <ul class="category-links">
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Common issues</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Map loading problems</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Report submission errors</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Browser compatibility</a></li>
+                        </ul>
+                        <a href="#" class="view-all">View all articles <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Tutorials Section -->
+        <section class="video-tutorials-section" data-aos="fade-up">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Video Tutorials</h2>
+                    <p>Learn how to use CrimeWatch features with step-by-step video guides</p>
+                </div>
+
+                <div class="video-grid">
+                    <div class="video-card" data-aos="fade-up">
+                        <div class="video-thumbnail">
+                            <img src="/assets/img/box-images/img-box-5.jpg" alt="How to Report a Crime">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>How to Report a Crime</h3>
+                            <p>Learn how to submit detailed crime reports through our citizen portal.</p>
+                            <span class="video-duration"><i class="far fa-clock"></i> 3:45</span>
+                        </div>
+                    </div>
+
+                    <div class="video-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="video-thumbnail">
+                            <img src="/assets/img/box-images/box-img-4.jpg" alt="Using the Crime Map">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Using the Crime Map</h3>
+                            <p>Navigate our interactive crime map to view incident patterns in your area.</p>
+                            <span class="video-duration"><i class="far fa-clock"></i> 4:20</span>
+                        </div>
+                    </div>
+
+                    <div class="video-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="video-thumbnail">
+                            <img src="/assets/img/box-images/img-box-6.jpg" alt="Privacy Settings">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Privacy Settings</h3>
+                            <p>Configure your privacy preferences and understand how your data is protected.</p>
+                            <span class="video-duration"><i class="far fa-clock"></i> 2:55</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="view-more-container" data-aos="fade-up">
+                    <a href="#" class="btn btn-primary">View All Tutorials</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Support Section -->
+        <section class="contact-support-section" data-aos="fade-up">
+            <div class="container">
+                <div class="support-card">
+                    <div class="support-info">
+                        <h2>Can't find what you're looking for?</h2>
+                        <p>Our support team is available to assist you with any questions or issues you may have.</p>
+                        <div class="contact-options">
+                            <div class="contact-option">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Email Support</h3>
+                                    <p>Get a response within 24 hours</p>
+                                    <a href="mailto:support@crimewatch.com" class="contact-link">support@crimewatch.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-option">
+                                <div class="contact-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Live Chat</h3>
+                                    <p>Available weekdays 9am-5pm</p>
+                                    <a href="#" class="contact-link">Start a chat</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="../contact.html" class="btn btn-primary">Contact Support</a>
+                    </div>
+                    <div class="support-image">
+                        <img src="/assets/img/box-images/box-img-3.png" alt="Customer Support">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scroll to Top Button -->
+        <button id="scroll-to-top" aria-label="Scroll to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </main>
+
+    <!-- Footer placeholder - will be filled by component-loader.js -->
+    <div id="footer-placeholder"></div>
+
+    <!-- JavaScript Files -->
+    <script src="../assets/js/theme-toggle.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="../assets/js/pages/help-center.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+</html> 

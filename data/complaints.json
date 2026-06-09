@@ -1,0 +1,352 @@
+[
+  {
+    "id": "CR-1001",
+    "type": "theft",
+    "location": {
+      "lat": 40.712800,
+      "lng": -74.006000,
+      "address": "123 Broadway, New York, NY"
+    },
+    "date": "2023-06-15",
+    "time": "14:30",
+    "description": "Wallet stolen from backpack while on the subway.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1002",
+    "type": "robbery",
+    "location": {
+      "lat": 40.714800,
+      "lng": -74.007200,
+      "address": "456 Canal St, New York, NY"
+    },
+    "date": "2023-06-12",
+    "time": "23:15",
+    "description": "Armed robbery at convenience store. Suspect took cash from register.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1003",
+    "type": "vandalism",
+    "location": {
+      "lat": 40.718900,
+      "lng": -74.001800,
+      "address": "789 Houston St, New York, NY"
+    },
+    "date": "2023-06-20",
+    "time": "03:45",
+    "description": "Graffiti on building wall. Multiple tags in red and black paint.",
+    "status": "pending",
+    "weight": 0.5
+  },
+  {
+    "id": "CR-1004",
+    "type": "assault",
+    "location": {
+      "lat": 40.711200,
+      "lng": -74.009500,
+      "address": "234 Chambers St, New York, NY"
+    },
+    "date": "2023-06-18",
+    "time": "01:20",
+    "description": "Physical altercation outside of nightclub. One person injured.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1005",
+    "type": "burglary",
+    "location": {
+      "lat": 40.715600,
+      "lng": -74.012100,
+      "address": "567 Greenwich St, New York, NY"
+    },
+    "date": "2023-06-14",
+    "time": "12:30",
+    "description": "Home break-in through back window. Electronics and jewelry stolen.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1006",
+    "type": "theft",
+    "location": {
+      "lat": 40.719200,
+      "lng": -74.005700,
+      "address": "890 Prince St, New York, NY"
+    },
+    "date": "2023-06-19",
+    "time": "15:45",
+    "description": "Bicycle stolen from bike rack. Lock was cut.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1007",
+    "type": "fraud",
+    "location": {
+      "lat": 40.713400,
+      "lng": -74.008900,
+      "address": "321 Church St, New York, NY"
+    },
+    "date": "2023-06-17",
+    "time": "11:10",
+    "description": "Credit card fraud at restaurant. Unauthorized charges reported.",
+    "status": "pending",
+    "weight": 0.5
+  },
+  {
+    "id": "CR-1008",
+    "type": "harassment",
+    "location": {
+      "lat": 40.716700,
+      "lng": -74.003400,
+      "address": "654 Spring St, New York, NY"
+    },
+    "date": "2023-06-16",
+    "time": "17:30",
+    "description": "Individual repeatedly following and verbally harassing victim over several days.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1009",
+    "type": "theft",
+    "location": {
+      "lat": 40.714100,
+      "lng": -74.010200,
+      "address": "987 Walker St, New York, NY"
+    },
+    "date": "2023-06-11",
+    "time": "09:15",
+    "description": "Phone snatched from victim's hand on sidewalk.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1010",
+    "type": "vandalism",
+    "location": {
+      "lat": 40.717500,
+      "lng": -74.006800,
+      "address": "210 Broome St, New York, NY"
+    },
+    "date": "2023-06-13",
+    "time": "02:50",
+    "description": "Car windows smashed in parking lot. Nothing stolen from vehicles.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1011",
+    "type": "assault",
+    "location": {
+      "lat": 40.711900,
+      "lng": -74.004300,
+      "address": "753 Grand St, New York, NY"
+    },
+    "date": "2023-06-10",
+    "time": "23:40",
+    "description": "Assault during argument at bar. Victim received minor injuries.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1012",
+    "type": "burglary",
+    "location": {
+      "lat": 40.718200,
+      "lng": -74.011400,
+      "address": "426 Canal St, New York, NY"
+    },
+    "date": "2023-06-09",
+    "time": "04:30",
+    "description": "Business break-in through rear door. Cash register and merchandise stolen.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1013",
+    "type": "robbery",
+    "location": {
+      "lat": 40.713800,
+      "lng": -74.002300,
+      "address": "159 Allen St, New York, NY"
+    },
+    "date": "2023-06-08",
+    "time": "22:15",
+    "description": "Victim robbed at ATM. Suspect took cash and fled on foot.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1014",
+    "type": "fraud",
+    "location": {
+      "lat": 40.716200,
+      "lng": -74.009800,
+      "address": "842 W Broadway, New York, NY"
+    },
+    "date": "2023-06-07",
+    "time": "13:20",
+    "description": "Check fraud at bank. Forged signature on stolen check.",
+    "status": "rejected",
+    "weight": 0.0
+  },
+  {
+    "id": "CR-1015",
+    "type": "harassment",
+    "location": {
+      "lat": 40.712200,
+      "lng": -74.005100,
+      "address": "375 Bowery St, New York, NY"
+    },
+    "date": "2023-06-06",
+    "time": "16:45",
+    "description": "Threatening messages sent to victim via social media.",
+    "status": "pending",
+    "weight": 0.5
+  },
+  {
+    "id": "CR-1016",
+    "type": "theft",
+    "location": {
+      "lat": 40.715100,
+      "lng": -74.008100,
+      "address": "628 W 4th St, New York, NY"
+    },
+    "date": "2023-06-05",
+    "time": "10:30",
+    "description": "Package stolen from doorstep of residence.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1017",
+    "type": "vandalism",
+    "location": {
+      "lat": 40.718600,
+      "lng": -74.003900,
+      "address": "913 E Houston St, New York, NY"
+    },
+    "date": "2023-06-04",
+    "time": "01:15",
+    "description": "Bus stop shelter glass broken.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1018",
+    "type": "assault",
+    "location": {
+      "lat": 40.713100,
+      "lng": -74.010800,
+      "address": "547 Washington St, New York, NY"
+    },
+    "date": "2023-06-03",
+    "time": "20:50",
+    "description": "Victim assaulted while walking home. Suspect fled when witnesses approached.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1019",
+    "type": "burglary",
+    "location": {
+      "lat": 40.717100,
+      "lng": -74.007400,
+      "address": "284 Sullivan St, New York, NY"
+    },
+    "date": "2023-06-02",
+    "time": "03:40",
+    "description": "Apartment break-in via fire escape. Electronics stolen.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1020",
+    "type": "robbery",
+    "location": {
+      "lat": 40.714400,
+      "lng": -74.001100,
+      "address": "792 E 4th St, New York, NY"
+    },
+    "date": "2023-06-01",
+    "time": "21:30",
+    "description": "Pedestrian robbed at gunpoint. Wallet and phone taken.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1021",
+    "type": "theft",
+    "location": {
+      "lat": 40.719500,
+      "lng": -74.008700,
+      "address": "159 W Houston St, New York, NY"
+    },
+    "date": "2023-05-31",
+    "time": "14:15",
+    "description": "Shoplifting at clothing store. Multiple items taken.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1022",
+    "type": "vandalism",
+    "location": {
+      "lat": 40.711600,
+      "lng": -74.003000,
+      "address": "631 Ludlow St, New York, NY"
+    },
+    "date": "2023-05-30",
+    "time": "23:20",
+    "description": "Multiple cars keyed in parking garage.",
+    "status": "pending",
+    "weight": 0.5
+  },
+  {
+    "id": "CR-1023",
+    "type": "fraud",
+    "location": {
+      "lat": 40.716900,
+      "lng": -74.010500,
+      "address": "417 W Broadway, New York, NY"
+    },
+    "date": "2023-05-29",
+    "time": "12:45",
+    "description": "Identity theft. Credit cards opened in victim's name.",
+    "status": "verified",
+    "weight": 1.0
+  },
+  {
+    "id": "CR-1024",
+    "type": "harassment",
+    "location": {
+      "lat": 40.713300,
+      "lng": -74.006200,
+      "address": "274 Grand St, New York, NY"
+    },
+    "date": "2023-05-28",
+    "time": "18:10",
+    "description": "Customer harassing staff at restaurant.",
+    "status": "rejected",
+    "weight": 0.0
+  },
+  {
+    "id": "CR-1025",
+    "type": "theft",
+    "location": {
+      "lat": 40.717800,
+      "lng": -74.004600,
+      "address": "936 Lafayette St, New York, NY"
+    },
+    "date": "2023-05-27",
+    "time": "16:30",
+    "description": "Laptop stolen from coffee shop.",
+    "status": "verified",
+    "weight": 1.0
+  }
+] 

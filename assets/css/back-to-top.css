@@ -1,0 +1,86 @@
+/* 
+ * Back to Top Button Styles
+ * Simple, conventional back-to-top button
+ */
+
+.back-to-top-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.back-to-top-container.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+#back-to-top-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: var(--primary, #3498db);
+    color: white;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#back-to-top-btn i {
+    font-size: 1.2rem;
+}
+
+/* Button hover and active states */
+#back-to-top-btn:hover {
+    background-color: var(--primary-dark, #2980b9);
+    transform: translateY(-3px);
+}
+
+#back-to-top-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .back-to-top-container {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    #back-to-top-btn {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .back-to-top-container {
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    #back-to-top-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    #back-to-top-btn i {
+        font-size: 1rem;
+    }
+}
+
+/* Theme-specific adjustments */
+.light-theme #back-to-top-btn {
+    background-color: var(--primary, #3498db);
+}
+
+.dark-theme #back-to-top-btn {
+    background-color: var(--primary, #3498db);
+} 

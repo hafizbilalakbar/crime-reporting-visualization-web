@@ -1,0 +1,104 @@
+<div class="complaint-card" data-id="{{complaintId}}">
+    <div class="complaint-header">
+        <div class="complaint-id">#{{complaintId}}</div>
+        <div class="complaint-status {{statusClass}}">{{status}}</div>
+    </div>
+    <div class="complaint-body">
+        <div class="complaint-info">
+            <div class="info-group">
+                <span class="info-label">Type:</span>
+                <span class="info-value">{{type}}</span>
+            </div>
+            <div class="info-group">
+                <span class="info-label">Date:</span>
+                <span class="info-value">{{date}}</span>
+            </div>
+            <div class="info-group">
+                <span class="info-label">Time:</span>
+                <span class="info-value">{{time}}</span>
+            </div>
+            <div class="info-group">
+                <span class="info-label">Location:</span>
+                <span class="info-value">{{location}}</span>
+            </div>
+            <div class="info-group">
+                <span class="info-label">Reporter:</span>
+                <span class="info-value">{{reporter}}</span>
+            </div>
+        </div>
+        <div class="complaint-description">
+            <h4>Description</h4>
+            <p>{{description}}</p>
+        </div>
+        <div class="complaint-evidence">
+            <h4>Evidence</h4>
+            <div class="evidence-preview">
+                {{#if hasImages}}
+                <div class="evidence-images">
+                    {{#each images}}
+                    <div class="evidence-image">
+                        <img src="{{src}}" alt="Evidence {{index}}">
+                    </div>
+                    {{/each}}
+                </div>
+                {{else}}
+                <p class="no-evidence">No images provided</p>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div class="complaint-actions">
+        <button class="btn btn-outline btn-sm action-details" data-complaint-id="{{complaintId}}">View Details</button>
+        <div class="status-actions">
+            {{#if isPending}}
+            <button class="btn btn-success btn-sm action-verify" data-complaint-id="{{complaintId}}">Verify</button>
+            <button class="btn btn-danger btn-sm action-reject" data-complaint-id="{{complaintId}}">Reject</button>
+            {{/if}}
+            {{#if isVerified}}
+            <button class="btn btn-warning btn-sm action-pending" data-complaint-id="{{complaintId}}">Mark Pending</button>
+            <button class="btn btn-danger btn-sm action-reject" data-complaint-id="{{complaintId}}">Reject</button>
+            {{/if}}
+            {{#if isRejected}}
+            <button class="btn btn-success btn-sm action-verify" data-complaint-id="{{complaintId}}">Verify</button>
+            <button class="btn btn-warning btn-sm action-pending" data-complaint-id="{{complaintId}}">Mark Pending</button>
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+<script>
+    // This script demonstrates how to use this template with handlebars.js or similar
+    /*
+    // Example usage:
+    
+    const complaintData = {
+        complaintId: "CR-1001",
+        type: "Theft",
+        date: "2023-06-15",
+        time: "14:30",
+        location: "123 Broadway, New York, NY",
+        reporter: "John Doe",
+        description: "Wallet stolen from backpack while on the subway.",
+        status: "Pending",
+        statusClass: "status-pending",
+        isPending: true,
+        isVerified: false,
+        isRejected: false,
+        hasImages: true,
+        images: [
+            { 
+                src: "assets/uploads/complaints/evidence-1001-1.jpg",
+                index: 1
+            },
+            { 
+                src: "assets/uploads/complaints/evidence-1001-2.jpg",
+                index: 2
+            }
+        ]
+    };
+    
+    const template = Handlebars.compile(document.getElementById('complaint-template').innerHTML);
+    const html = template(complaintData);
+    complaintsContainer.innerHTML += html;
+    */
+</script> 

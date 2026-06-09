@@ -1,0 +1,68 @@
+/* Light Theme Variables */
+:root {
+    /* Color Variables */
+    --primary: #3457db;
+    --primary-dark: #2a45ae;
+    --primary-light: #6987e6;
+    --secondary: #2c3e50;
+    --secondary-dark: #1a2530;
+    --accent: #27ae60;
+    --accent-dark: #1e884a;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --success: #2ecc71;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-accent: #eef2ff;
+    
+    /* Text Colors */
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-light: #999999;
+    --text-heading: #222222;
+    
+    /* Shadow */
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Light theme specific styles */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Ensure hero sections have white text even in light theme */
+.hero-section {
+    color: white !important;
+}
+
+.hero-section h1,
+.hero-section h2,
+.hero-section h3,
+.hero-section p {
+    color: white !important;
+}
+
+.hero-content h1,
+.hero-content h2,
+.hero-content h3,
+.hero-content p {
+    color: white !important;
+}
+
+.header {
+    background-color: var(--bg-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.header.scrolled {
+    box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        background-color: var(--bg-primary);
+    }
+} 

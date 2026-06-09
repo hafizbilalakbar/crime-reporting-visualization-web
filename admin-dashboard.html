@@ -1,0 +1,230 @@
+ik<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - CrimeWatch</title>
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" id="theme-style" href="assets/css/themes/light.css">
+    <!-- Component loader script -->
+    <script src="assets/js/component-loader.js"></script>
+</head>
+<body class="dashboard-body">
+   <!-- Header placeholder - will be filled by component-loader.js -->
+   <div id="header-placeholder"></div>
+
+    <div class="dashboard-container">
+        <aside class="sidebar" id="sidebar">
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-tab="complaints">Complaints</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-tab="map">Map View</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-tab="statistics">Statistics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-tab="settings">Settings</a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="index.html" class="nav-link">Back to Site</a>
+            </div>
+        </aside>
+
+        <main class="dashboard-content">
+            <div class="tab-content active" id="dashboard-tab">
+                <div class="page-header">
+                    <h2>Dashboard</h2>
+                    <div class="page-actions">
+                        <div class="date-filter">
+                            <select id="dateRangeSelect">
+                                <option value="today">Today</option>
+                                <option value="week" selected>This Week</option>
+                                <option value="month">This Month</option>
+                                <option value="year">This Year</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-outline">Export</button>
+                    </div>
+                </div>
+                
+                <div class="dashboard-stats">
+                    <div class="stat-card" data-aos="fade-up">
+                        <div class="stat-icon total">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Reports</h3>
+                            <div class="stat-number">256</div>
+                            <div class="stat-change increase">
+                                12% increase
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stat-icon pending">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Pending Review</h3>
+                            <div class="stat-number">42</div>
+                            <div class="stat-change increase">
+                                8% increase
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-icon verified">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Verified Reports</h3>
+                            <div class="stat-number">198</div>
+                            <div class="stat-change increase">
+                                14% increase
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-icon rejected">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Rejected Reports</h3>
+                            <div class="stat-number">16</div>
+                            <div class="stat-change decrease">
+                                3% decrease
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-row">
+                    <div class="dashboard-col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Recent Crime Reports</h3>
+                                <a href="#" class="btn-link">View All</a>
+                            </div>
+                            <div class="card-content">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Type</th>
+                                                <th>Location</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>#CR-1234</td>
+                                                <td>Theft</td>
+                                                <td>Main St, New York</td>
+                                                <td>2023-05-12</td>
+                                                <td><span class="status-badge pending">Pending</span></td>
+                                                <td>
+                                                    <div class="table-actions">
+                                                        <button class="btn-icon">View</button>
+                                                        <button class="btn-icon">Edit</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#CR-1235</td>
+                                                <td>Assault</td>
+                                                <td>Broadway, New York</td>
+                                                <td>2023-05-11</td>
+                                                <td><span class="status-badge verified">Verified</span></td>
+                                                <td>
+                                                    <div class="table-actions">
+                                                        <button class="btn-icon">View</button>
+                                                        <button class="btn-icon">Edit</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#CR-1236</td>
+                                                <td>Robbery</td>
+                                                <td>Park Ave, New York</td>
+                                                <td>2023-05-10</td>
+                                                <td><span class="status-badge verified">Verified</span></td>
+                                                <td>
+                                                    <div class="table-actions">
+                                                        <button class="btn-icon">View</button>
+                                                        <button class="btn-icon">Edit</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#CR-1237</td>
+                                                <td>Vandalism</td>
+                                                <td>5th Ave, New York</td>
+                                                <td>2023-05-09</td>
+                                                <td><span class="status-badge rejected">Rejected</span></td>
+                                                <td>
+                                                    <div class="table-actions">
+                                                        <button class="btn-icon">View</button>
+                                                        <button class="btn-icon">Edit</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+        <!-- Footer placeholder - will be filled by component-loader.js -->
+        <div id="footer-placeholder"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="assets/js/theme-toggle.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/data-connector.js"></script>
+    <script src="assets/js/dashboard-connector.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/animation.js"></script>
+</body>
+</html> 

@@ -1,0 +1,207 @@
+<footer class="footer">
+    <!-- Particles JS background for footer -->
+    <div id="footer-particles" class="footer-particles"></div>
+    
+    <div class="container footer-container">
+        <!-- Modern footer content -->
+        <div class="footer-content">
+            <!-- Brand column -->
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg class="footer-svg-logo" width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h2>Crime Reporting</h2>
+                </div>
+                <p class="footer-tagline">Building safer communities through citizen reporting and data-driven crime prevention.</p>
+                
+                <!-- Social media icons with modern animation -->
+                <div class="footer-social" id="animate-social-icons">
+                    <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube" class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Links column -->
+            <div class="footer-nav">
+                <div class="footer-nav-col">
+                    <h3>Main Menu</h3>
+                    <ul>
+                        <li><a href="index.html" class="dynamic-link">Home</a></li>
+                        <li><a href="citizen-portal.html" class="dynamic-link">Report Crime</a></li>
+                        <li><a href="map-visualization.html" class="dynamic-link">Crime Map</a></li>
+                        <li><a href="about.html" class="dynamic-link">About Us</a></li>
+                        <li><a href="contact.html" class="dynamic-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="pages/faq.html" class="dynamic-link">FAQ</a></li>
+                        <li><a href="pages/help-center.html" class="dynamic-link">Help Center</a></li>
+                        <li><a href="pages/maps-info.html" class="dynamic-link">Maps Info</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="pages/terms.html" class="dynamic-link">Terms of Use</a></li>
+                        <li><a href="pages/privacy-policy.html" class="dynamic-link">Privacy Policy</a></li>
+                        <li><a href="pages/disclaimer.html" class="dynamic-link">Disclaimer</a></li>
+                        <!-- <li><a href="pages/admin-login.html" class="dynamic-link">Admin</a></li> -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Newsletter Column -->
+            <div class="footer-newsletter">
+                <h3>Stay Connected</h3>
+                <p>Get safety alerts and updates in your area</p>
+                <div class="newsletter-form">
+                    <div class="newsletter-input-group">
+                        <input type="email" class="newsletter-input" placeholder="Email address">
+                        <button class="newsletter-btn">Subscribe</button>
+                    </div>
+                </div>
+                
+                <!-- Mobile app buttons -->
+                <div class="app-buttons">
+                    <a href="#" class="app-btn" target="_blank" rel="noopener">
+                        <i class="fab fa-google-play"></i>
+                        <span>
+                            <small>Get it on</small>
+                            Google Play
+                        </span>
+                    </a>
+                    <a href="#" class="app-btn" target="_blank" rel="noopener">
+                        <i class="fab fa-apple"></i>
+                        <span>
+                            <small>Download on</small>
+                            App Store
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer bottom -->
+        <div class="footer-bottom">
+            <p class="copyright">&copy; <span id="currentYear"></span> Crime Reporting | All Rights Reserved</p>
+            <div class="footer-contact">
+                <a href="tel:+1234567890"><i class="fas fa-phone-alt"></i> +123 456 7890</a>
+                <a href="mailto:contact@crimereporting.com"><i class="fas fa-envelope"></i> contact@crimereporting.com</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Initialize current year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    // Initialize particles.js in footer if available
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof particlesJS !== 'undefined') {
+            // Get current theme to adjust particles settings
+            const isDarkTheme = document.documentElement.classList.contains('dark-theme');
+            const opacity = isDarkTheme ? 0.3 : 0.2;
+            const particleColor = getComputedStyle(document.documentElement).getPropertyValue('--footer-particle-color').trim() || "#ffffff";
+            
+            particlesJS('footer-particles', {
+                "particles": {
+                    "number": {
+                        "value": 40,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": particleColor
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        }
+                    },
+                    "opacity": {
+                        "value": opacity,
+                        "random": true
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": particleColor,
+                        "opacity": opacity,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 1,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": false
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 0.8
+                            }
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+            
+            // Update particles when theme changes
+            document.addEventListener('themeChanged', function(e) {
+                const isDarkTheme = e.detail.theme === 'dark';
+                const opacity = isDarkTheme ? 0.3 : 0.2;
+                const particles = document.querySelector('#footer-particles canvas');
+                
+                if (particles && window.pJSDom && window.pJSDom[0]) {
+                    window.pJSDom[0].pJS.particles.opacity.value = opacity;
+                    window.pJSDom[0].pJS.particles.line_linked.opacity = opacity;
+                    window.pJSDom[0].pJS.fn.particlesRefresh();
+                }
+            });
+        }
+    });
+</script>

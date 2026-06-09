@@ -1,0 +1,692 @@
+/* Enhanced Header Styles - Professional Version */
+
+/* Basic Header Structure */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-primary);
+    box-shadow: var(--shadow-sm);
+    z-index: var(--z-index-sticky);
+    transition: all var(--transition-medium);
+    height: 80px;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Add subtle scaling and shadow change on scroll */
+.header.scrolled {
+    height: 65px;
+    box-shadow: var(--shadow-md);
+    border-bottom-color: transparent;
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+/* Logo Styles with better transitions */
+.logo {
+    display: flex;
+    align-items: center;
+    transition: transform var(--transition-medium);
+    position: relative;
+    z-index: 30;
+    margin-right: var(--space-xl);
+}
+
+.logo-svg {
+    height: 40px;
+    width: 40px;
+    margin-right: var(--space-sm);
+    transition: all var(--transition-medium);
+}
+
+.logo h1 {
+    font-size: var(--font-size-xl);
+    margin-bottom: 0;
+    color: var(--primary);
+    transition: all var(--transition-medium);
+    white-space: nowrap;
+    line-height: 1;
+}
+
+/* Logo scale effect on scroll */
+.header.scrolled .logo {
+    transform: scale(0.9);
+}
+
+.header.scrolled .logo-svg {
+    height: 35px;
+    width: 35px;
+}
+
+.header.scrolled .logo h1 {
+    font-size: calc(var(--font-size-xl) - 0.2rem);
+}
+
+/* Header controls container */
+.header-controls {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 55;
+}
+
+/* Enhanced Navigation Menu */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    transition: all var(--transition-medium);
+    margin-left: auto;
+    margin-right: var(--space-xl);
+}
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    gap: var(--space-xl);
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    position: relative;
+}
+
+/* Enhanced nav links with icons */
+.nav-menu a.header-nav-link {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-medium);
+    position: relative;
+    padding: var(--space-sm) var(--space-xs);
+    transition: all var(--transition-fast); 
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: var(--radius-md);
+}
+
+/* Target header-specific nav icons */
+.nav-icon.header-nav-icon {
+    opacity: 0.8;
+    transition: all var(--transition-fast);
+    font-size: var(--font-size-md);
+}
+
+.nav-menu a.header-nav-link:hover {
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* Apply hover effects only to header nav icons */
+.nav-menu a.header-nav-link:hover .nav-icon.header-nav-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.nav-menu a.header-nav-link.active {
+    color: var(--primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Apply active styles only to header nav icons */
+.nav-menu a.header-nav-link.active .nav-icon.header-nav-icon {
+    opacity: 1;
+}
+
+/* Underline animation for header nav links only */
+.nav-menu a.header-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 5px;
+}
+
+.nav-menu a.header-nav-link.active::after,
+.nav-menu a.header-nav-link:hover::after {
+    transform: scaleX(0.8);
+}
+
+/* Admin Link Style */
+.admin-link {
+    color: var(--primary) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    background-color: var(--bg-accent);
+    border-radius: var(--radius-md);
+    padding: var(--space-xs) var(--space-md) !important;
+    transition: all var(--transition-fast) !important;
+    box-shadow: 0 2px 5px rgba(var(--primary-rgb), 0.2);
+}
+
+.admin-link:hover {
+    background-color: rgba(var(--primary-rgb), 0.15);
+    transform: translateY(-3px) !important;
+    box-shadow: 0 4px 8px rgba(var(--primary-rgb), 0.25);
+}
+
+.admin-link:hover .nav-icon {
+    transform: rotate(-10deg) scale(1.2);
+}
+
+.admin-link::after {
+    display: none !important;
+}
+
+/* Theme Toggle Button with improved styling */
+.theme-toggle {
+    margin-left: var(--space-lg);
+    position: relative;
+    z-index: 35;
+}
+
+/* Completely redesigned toggle button to fix positioning issues */
+#theme-toggle-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 0;
+    overflow: hidden;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#theme-toggle-btn:hover {
+    background-color: var(--bg-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+#theme-toggle-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+/* Fixed icon positioning with better centering */
+.sun-icon, .moon-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    will-change: transform, opacity;
+    line-height: 1;
+    text-align: center;
+}
+
+/* Default state - light theme */
+body:not(.dark-theme) .sun-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+    visibility: hidden;
+}
+
+body:not(.dark-theme) .moon-icon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+    visibility: visible;
+}
+
+/* Dark theme state */
+.dark-theme .sun-icon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+    visibility: visible;
+}
+
+.dark-theme .moon-icon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+    visibility: hidden;
+}
+
+/* Enhanced Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    margin-left: var(--space-md);
+    z-index: 35;
+    padding: 0;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-primary);
+    border-radius: 4px;
+    transition: transform 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6), 
+                opacity 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+                width 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+                background-color 0.3s ease;
+}
+
+.mobile-menu-btn span:nth-child(1) {
+    top: 0;
+    transform-origin: center;
+}
+
+.mobile-menu-btn span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: center;
+    width: 75%;
+    right: 0;
+}
+
+.mobile-menu-btn span:nth-child(3) {
+    bottom: 0;
+    transform-origin: center;
+}
+
+/* Animated Menu Button States */
+.mobile-menu-btn.active span {
+    background-color: var(--primary);
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(15px) translateY(-50%);
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Responsive Styles for Large Desktop Screens */
+@media (min-width: 1400px) {
+    .header .container {
+        padding: 0 var(--space-xl);
+    }
+    
+    .nav-menu ul {
+        gap: calc(var(--space-xl) + 10px);
+    }
+}
+
+/* Responsive Styles for Laptops and Desktops */
+@media (max-width: 1366px) {
+    .nav-menu ul {
+        gap: calc(var(--space-lg) + 5px);
+    }
+}
+
+/* Responsive Styles for Small Desktops */
+@media (max-width: 1200px) {
+    .nav-menu ul {
+        gap: var(--space-lg);
+    }
+    
+    .header .container {
+        padding: 0 var(--space-lg);
+    }
+    
+    .logo {
+        margin-right: var(--space-lg);
+    }
+    
+    .nav-menu {
+        margin-right: var(--space-lg);
+    }
+}
+
+/* Responsive Styles for 1024px (Tablets Landscape and Small Laptops) */
+@media (max-width: 1024px) {
+    .nav-menu ul {
+        gap: var(--space-md);
+    }
+    
+    .logo h1 {
+        font-size: calc(var(--font-size-lg) + 0.1rem);
+    }
+    
+    .admin-link {
+        padding: var(--space-xs) var(--space-sm) !important;
+    }
+    
+    .theme-toggle {
+        margin-left: var(--space-md);
+    }
+    
+    /* Target header-specific nav icons at this breakpoint */
+    .nav-icon.header-nav-icon {
+        font-size: var(--font-size-sm);
+    }
+    
+    .nav-menu a.header-nav-link {
+        font-size: var(--font-size-sm);
+        padding: var(--space-xs) var(--space-xs);
+    }
+    
+    .logo-svg {
+        height: 35px;
+        width: 35px;
+    }
+    
+    #theme-toggle-btn {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .sun-icon, .moon-icon {
+        font-size: 16px;
+    }
+    
+    .logo {
+        margin-right: var(--space-md);
+    }
+    
+    .nav-menu {
+        margin-right: var(--space-md);
+    }
+}
+
+/* Responsive Styles for Tablets */
+@media (max-width: 768px) {
+    .header {
+        height: 70px;
+    }
+    
+    .header.scrolled {
+        height: 60px;
+    }
+    
+    .header .container {
+        padding: 0 var(--space-md);
+    }
+    
+    .logo h1 {
+        font-size: var(--font-size-lg);
+    }
+    
+    .logo-svg {
+        height: 36px;
+        width: 36px;
+    }
+    
+    /* Reset margin for mobile view */
+    .logo {
+        margin-right: 0;
+    }
+    
+    .nav-menu {
+        margin-right: 0;
+        margin-left: 0;
+    }
+    
+    /* Mobile Navigation Menu */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 350px;
+        height: 100vh;
+        background-color: var(--bg-primary);
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 50;
+        opacity: 0;
+    }
+    
+    /* Add backdrop for mobile menu */
+    .nav-menu::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(3px);
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+    }
+    
+    .nav-menu.active {
+        right: 0;
+        opacity: 1;
+    }
+    
+    .nav-menu.active::before {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    .nav-menu ul {
+        flex-direction: column;
+        padding: var(--space-xl);
+        gap: var(--space-xl);
+        align-items: flex-start;
+        width: 100%;
+    }
+    
+    .nav-menu li {
+        width: 100%;
+    }
+    
+    .nav-menu a.header-nav-link {
+        display: flex;
+        font-size: var(--font-size-lg);
+        padding: var(--space-sm);
+        width: 100%;
+        transition: all var(--transition-fast);
+    }
+    
+    .nav-menu a.header-nav-link::after {
+        display: none;
+    }
+    
+    .nav-menu a.header-nav-link:hover {
+        background-color: rgba(var(--primary-rgb), 0.08);
+        transform: translateX(5px);
+        padding-left: var(--space-md);
+    }
+    
+    /* Target header-specific nav icons at this breakpoint */
+    .nav-icon.header-nav-icon {
+        font-size: var(--font-size-lg);
+        width: 30px;
+        margin-right: var(--space-sm);
+    }
+    
+    .admin-link {
+        margin-top: var(--space-sm);
+        padding: var(--space-sm) var(--space-lg) !important;
+        justify-content: center;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    /* Theme Toggle Adjustments for Mobile */
+    #theme-toggle-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .sun-icon, .moon-icon {
+        font-size: 16px;
+    }
+    
+    /* Mobile menu backdrop */
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
+/* Responsive Styles for Mobile Phones */
+@media (max-width: 480px) {
+    .header {
+        height: 60px;
+    }
+    
+    .header.scrolled {
+        height: 55px;
+    }
+    
+    .header .container {
+        padding: 0 var(--space-sm);
+    }
+    
+    .logo-svg {
+        height: 32px;
+        width: 32px;
+        margin-right: var(--space-xs);
+    }
+    
+    .logo h1 {
+        font-size: calc(var(--font-size-md) + 0.1rem);
+    }
+    
+    .nav-menu {
+        width: 85%;
+        max-width: 300px;
+    }
+    
+    .nav-menu ul {
+        padding: var(--space-lg);
+        gap: var(--space-lg);
+    }
+    
+    .nav-menu a.header-nav-link {
+        font-size: var(--font-size-md);
+    }
+    
+    /* Target header-specific nav icons at this breakpoint */
+    .nav-icon.header-nav-icon {
+        font-size: var(--font-size-md);
+    }
+    
+    #theme-toggle-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .sun-icon, .moon-icon {
+        font-size: 14px;
+    }
+    
+    .theme-toggle {
+        margin-left: var(--space-sm);
+    }
+    
+    .mobile-menu-btn {
+        width: 26px;
+        height: 20px;
+        margin-left: var(--space-sm);
+    }
+}
+
+/* Responsive Styles for Small Mobile Phones */
+@media (max-width: 360px) {
+    .logo h1 {
+        font-size: var(--font-size-md);
+        max-width: 120px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    
+    .logo-svg {
+        height: 28px;
+        width: 28px;
+    }
+    
+    #theme-toggle-btn {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .sun-icon, .moon-icon {
+        font-size: 13px;
+    }
+    
+    .mobile-menu-btn {
+        width: 22px;
+        height: 18px;
+    }
+    
+    .nav-menu {
+        width: 100%;
+    }
+}
+
+/* Animation for mobile menu items entrance */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.nav-menu.active li {
+    animation: slideInRight 0.5s forwards;
+    opacity: 0;
+}
+
+.nav-menu.active li:nth-child(1) { animation-delay: 0.1s; }
+.nav-menu.active li:nth-child(2) { animation-delay: 0.15s; }
+.nav-menu.active li:nth-child(3) { animation-delay: 0.2s; }
+.nav-menu.active li:nth-child(4) { animation-delay: 0.25s; }
+.nav-menu.active li:nth-child(5) { animation-delay: 0.3s; }
+.nav-menu.active li:nth-child(6) { animation-delay: 0.35s; }
+
+/* Dark theme specific adjustments */
+.dark-theme .header {
+    border-bottom-color: rgba(255,255,255,0.05);
+}
+
+.dark-theme #theme-toggle-btn {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.dark-theme .admin-link {    box-shadow: 0 2px 5px rgba(0,0,0,0.3);}/* Fix for Safari/iOS devices that might have issues with icon positioning */@supports (-webkit-touch-callout: none) {    .sun-icon, .moon-icon {        line-height: 0 !important;        text-align: center !important;        position: absolute !important;        top: 50% !important;        left: 50% !important;        transform: translate(-50%, -50%) !important;        width: auto !important;        height: auto !important;    }        body:not(.dark-theme) .sun-icon {        transform: translate(-50%, -50%) rotate(90deg) scale(0.5) !important;    }        body:not(.dark-theme) .moon-icon {        transform: translate(-50%, -50%) rotate(0) scale(1) !important;    }        .dark-theme .sun-icon {        transform: translate(-50%, -50%) rotate(0) scale(1) !important;    }        .dark-theme .moon-icon {        transform: translate(-50%, -50%) rotate(-90deg) scale(0.5) !important;    }} 

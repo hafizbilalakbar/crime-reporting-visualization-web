@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Crime Map & Heatmap - Crime Reporting</title>
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/map.css">
+    <link rel="stylesheet" href="assets/css/map-visualization.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/odometer@0.4.8/themes/odometer-theme-default.css">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+          crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+    
+    <!-- Chart.js for analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link rel="stylesheet" id="theme-style" href="assets/css/themes/light.css">
+    <!-- Component loader script -->
+    <script src="assets/js/component-loader.js"></script>
+</head>
+<body>
+    <!-- Header placeholder - will be filled by component-loader.js -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <!-- Hero Section with Background Image -->
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="animate__animated animate__fadeInDown">Crime Map Visualization</h1>
+                <p class="animate__animated animate__fadeInUp">Explore crime data with our interactive mapping tools</p>
+                <div class="hero-actions animate__animated animate__fadeInUp">
+                    <a href="#map-area" class="btn btn-primary">
+                        <i class="fas fa-map-marked-alt"></i> View Crime Map
+                    </a>
+                    <a href="#analytics" class="btn btn-outline-light">
+                        <i class="fas fa-chart-line"></i> See Analytics
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Crime Map Main Section - with no title, just the map -->
+        <section id="map-area" class="map-section">
+            <div class="container">                
+                <div class="map-dashboard">
+                    <div class="map-container-wrapper" data-aos="fade-up">
+                        <div class="map-controls">
+                            <div class="filter-group">
+                                <label for="crime-type-filter"><i class="fas fa-filter"></i> Crime Type:</label>
+                                <select id="crime-type-filter" class="filter-control">
+                                    <option value="all">All Types</option>
+                                    <option value="theft">Theft</option>
+                                    <option value="robbery">Robbery</option>
+                                    <option value="assault">Assault</option>
+                                    <option value="vandalism">Vandalism</option>
+                                    <option value="burglary">Burglary</option>
+                                    <option value="fraud">Fraud</option>
+                                    <option value="harassment">Harassment</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="date-range-filter"><i class="fas fa-calendar-alt"></i> Time Period:</label>
+                                <select id="date-range-filter" class="filter-control">
+                                    <option value="week">Past Week</option>
+                                    <option value="month" selected>Past Month</option>
+                                    <option value="quarter">Past 3 Months</option>
+                                    <option value="year">Past Year</option>
+                                    <option value="all">All Time</option>
+                                </select>
+                            </div>
+                            
+                            <div class="view-toggle">
+                                <button id="pin-view-btn" class="view-btn active" aria-label="Show pin view">
+                                    <i class="fas fa-map-pin"></i> <span class="view-text">Pin View</span>
+                                </button>
+                                <button id="heatmap-view-btn" class="view-btn" aria-label="Show heatmap view">
+                                    <i class="fas fa-fire"></i> <span class="view-text">Heatmap</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="crime-map" class="crime-map"></div>
+                        
+                        <div class="map-legend">
+                            <h3><i class="fas fa-info-circle"></i> Legend</h3>
+                            <div class="legend-items">
+                                <div class="legend-item">
+                                    <span class="legend-marker theft"></span>
+                                    <span class="legend-label">Theft</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-marker robbery"></span>
+                                    <span class="legend-label">Robbery</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-marker assault"></span>
+                                    <span class="legend-label">Assault</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-marker vandalism"></span>
+                                    <span class="legend-label">Vandalism</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-marker burglary"></span>
+                                    <span class="legend-label">Burglary</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-marker fraud"></span>
+                                    <span class="legend-label">Fraud</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-marker harassment"></span>
+                                    <span class="legend-label">Harassment</span>
+                                </div>
+                            </div>
+                            
+                            <div class="heatmap-legend">
+                                <h4><i class="fas fa-fire-alt"></i> Heatmap Intensity</h4>
+                                <div class="heatmap-gradient">
+                                    <span class="gradient-label">Low</span>
+                                    <div class="gradient"></div>
+                                    <span class="gradient-label">High</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="map-info-sidebar" data-aos="fade-left">
+                        <div class="info-card stats-card">
+                            <h3><i class="fas fa-chart-bar"></i> Crime Statistics</h3>
+                            <div class="stat-group">
+                                <div class="stat-item">
+                                    <span class="stat-value odometer" id="total-crimes" data-count="0">0</span>
+                                    <span class="stat-label">Total Reports</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="most-common">None</span>
+                                    <span class="stat-label">Most Common</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value odometer" id="hot-spots" data-count="0">0</span>
+                                    <span class="stat-label">Hot Spots</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3><i class="fas fa-question-circle"></i> How to Use This Map</h3>
+                            <ul class="info-list">
+                                <li><i class="fas fa-toggle-on"></i> Switch between pin markers and heatmap views</li>
+                                <li><i class="fas fa-filter"></i> Filter by crime type and time period</li>
+                                <li><i class="fas fa-mouse-pointer"></i> Click on pins to see crime details</li>
+                                <li><i class="fas fa-search-plus"></i> Zoom in/out to explore specific areas</li>
+                                <li><i class="fas fa-exclamation-triangle"></i> Identify high-risk areas marked in red on the heatmap</li>
+                                <li><i class="fas fa-location-arrow"></i> Click the location button to find crimes near you</li>
+                            </ul>
+                            <a href="#safety-tips" class="btn btn-primary btn-block">Safety Tips</a>
+                        </div>
+                        
+                        <div class="info-card crime-details" id="crime-details">
+                            <h3><i class="fas fa-file-alt"></i> Selected Crime Details</h3>
+                            <p class="select-prompt">Click on a crime marker to view details</p>
+                            <div class="crime-info" style="display: none;">
+                                <div class="info-row">
+                                    <span class="info-label">Type:</span>
+                                    <span class="info-value" id="detail-type">Theft</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Date:</span>
+                                    <span class="info-value" id="detail-date">June 15, 2023</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Time:</span>
+                                    <span class="info-value" id="detail-time">2:30 PM</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Location:</span>
+                                    <span class="info-value" id="detail-location">123 Main Street</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Status:</span>
+                                    <span class="info-value status-verified" id="detail-status">Verified</span>
+                                </div>
+                                <div class="info-row description">
+                                    <span class="info-label">Description:</span>
+                                    <p class="info-value" id="detail-description">Vehicle break-in, passenger window smashed. Personal items stolen from the glove compartment.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Feature Highlights Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Interactive Crime Mapping</h2>
+                    <p>Our advanced visualization tools help you understand crime trends in your area</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="fas fa-map-marked"></i>
+                        </div>
+                        <h3>Interactive Map</h3>
+                        <p>Navigate through an interactive map displaying reported crimes with precise location data</p>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3>Heat Map Analysis</h3>
+                        <p>Visualize crime density with heat maps to identify high-risk areas in your neighborhood</p>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon">
+                            <i class="fas fa-filter"></i>
+                        </div>
+                        <h3>Advanced Filtering</h3>
+                        <p>Filter crime data by type and time period to focus on specific patterns and trends</p>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Detailed Statistics</h3>
+                        <p>Access comprehensive crime statistics and analysis for informed decision-making</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Analytics Section with enhanced visuals and charts -->
+        <section id="analytics" class="analytics-section" data-aos="fade-up">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Crime Analytics Dashboard</h2>
+                    <p>Detailed insights derived from reported crime data</p>
+                </div>
+                
+                <div class="analytics-charts">
+                    <div class="chart-card">
+                        <h3><i class="fas fa-chart-pie"></i> Crime Distribution by Type</h3>
+                        <div class="chart-container">
+                            <canvas id="crimeTypeChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <h3><i class="fas fa-chart-line"></i> Crime Trends Over Time</h3>
+                        <div class="chart-container">
+                            <canvas id="crimeTrendChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analytics-card">
+                    <h3><i class="fas fa-chart-line"></i> Crime Analytics</h3>
+                    <div class="analytics-grid">
+                        <div class="analytics-item">
+                            <div class="analytics-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="analytics-info">
+                                <h4>High-Risk Areas</h4>
+                                <p>Downtown and North East sectors show increased activity</p>
+                            </div>
+                        </div>
+                        <div class="analytics-item">
+                            <div class="analytics-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="analytics-info">
+                                <h4>Time Analysis</h4>
+                                <p>Most incidents occur between 10PM and 2AM</p>
+                            </div>
+                        </div>
+                        <div class="analytics-item">
+                            <div class="analytics-icon">
+                                <i class="fas fa-tag"></i>
+                            </div>
+                            <div class="analytics-info">
+                                <h4>Common Type</h4>
+                                <p>Theft accounts for 40% of all reports</p>
+                            </div>
+                        </div>
+                        <div class="analytics-item">
+                            <div class="analytics-icon">
+                                <i class="fas fa-calendar-week"></i>
+                            </div>
+                            <div class="analytics-info">
+                                <h4>Busiest Days</h4>
+                                <p>Friday and Saturday show highest incident rates</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="insights-panel">
+                    <h3><i class="fas fa-lightbulb"></i> Crime Insights</h3>
+                    <ul class="insight-list">
+                        <li class="insight-item high-priority">
+                            <h4>Increased Vehicle Break-ins</h4>
+                            <p>There has been a 25% increase in vehicle-related thefts in the downtown area over the past month. Residents should avoid leaving valuables in vehicles.</p>
+                        </li>
+                        <li class="insight-item medium-priority">
+                            <h4>Seasonal Trend Detected</h4>
+                            <p>Data analysis shows crime rates typically rise during the summer months. Community patrols are being increased accordingly.</p>
+                        </li>
+                        <li class="insight-item low-priority">
+                            <h4>Neighborhood Watch Success</h4>
+                            <p>Areas with active neighborhood watch programs have seen a 15% reduction in property crimes over the past quarter.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Safety Tips Section with Images -->
+        <section id="safety-tips" class="safety-tips-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Safety Tips & Resources</h2>
+                    <p>Learn how to stay safe and protect your community</p>
+                </div>
+                
+                <div class="safety-grid">
+                    <div class="safety-content" data-aos="fade-right">
+                        <div class="safety-card">
+                            <h3><i class="fas fa-shield-alt"></i> Personal Safety</h3>
+                            <ul class="safety-list">
+                                <li>Be aware of your surroundings, especially in high-risk areas</li>
+                                <li>Avoid walking alone at night in poorly lit areas</li>
+                                <li>Keep valuable items secure and out of sight</li>
+                                <li>Trust your instincts - if something feels wrong, move to a safe location</li>
+                                <li>Have emergency contacts easily accessible on your phone</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="safety-card">
+                            <h3><i class="fas fa-home"></i> Home Security</h3>
+                            <ul class="safety-list">
+                                <li>Ensure all doors and windows have secure locks</li>
+                                <li>Install adequate lighting around your property</li>
+                                <li>Consider a security system or visible cameras</li>
+                                <li>Don't leave spare keys in obvious locations</li>
+                                <li>Join or form a neighborhood watch program</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="safety-image" data-aos="fade-left">
+                        <img src="assets/img/images/crime-safety.jpg" alt="Community Safety" class="img-fluid">
+                        <div class="image-caption">Working together for a safer community</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Community Resources Section -->
+        <section class="resources-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Community Resources</h2>
+                    <p>Contact information and resources for crime prevention and reporting</p>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="resource-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Emergency Services</h3>
+                        <p>Police: 911<br>Non-Emergency: 311<br>Crime Stoppers: 1-800-555-TIPS</p>
+                        <a href="emergency-services.html" class="btn btn-outline">More Information</a>
+                    </div>
+                    
+                    <div class="resource-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="resource-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Neighborhood Watch</h3>
+                        <p>Join a local neighborhood watch program to help keep your community safe</p>
+                        <a href="neighborhood-watch.html" class="btn btn-outline">Find Programs</a>
+                    </div>
+                    
+                    <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="resource-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3>Report a Crime</h3>
+                        <p>Report incidents through our online portal or mobile app</p>
+                        <a href="report-crime.html" class="btn btn-primary">Report Now</a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="quick-links-section" data-aos="fade-up">
+                    <h3>Quick Links</h3>
+                    <div class="quick-links-grid">
+                        <a href="index.html" class="quick-link">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                        <a href="about.html" class="quick-link">
+                            <i class="fas fa-info-circle"></i> About Us
+                        </a>
+                        <a href="report-crime.html" class="quick-link">
+                            <i class="fas fa-exclamation-circle"></i> Report Crime
+                        </a>
+                        <a href="crime-map.html" class="quick-link">
+                            <i class="fas fa-map"></i> Crime Map
+                        </a>
+                        <a href="dashboard.html" class="quick-link">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                        <a href="user-profile.html" class="quick-link">
+                            <i class="fas fa-user"></i> User Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2>Stay Informed About Your Community</h2>
+                    <p>Sign up for crime alerts and safety notifications for your neighborhood</p>
+                    <form class="cta-form">
+                        <div class="form-group">
+                            <input type="email" placeholder="Your email address" class="form-control">
+                            <button type="submit" class="btn btn-primary">Subscribe</button>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" id="agree-terms" class="form-check-input">
+                            <label for="agree-terms" class="form-check-label">I agree to receive email notifications</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer placeholder - will be filled by component-loader.js -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
+            crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    
+    <!-- AOS (Animate on Scroll) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- Odometer for smooth number animations -->
+    <script src="https://cdn.jsdelivr.net/npm/odometer@0.4.8/odometer.min.js"></script>
+    
+    <!-- Data and application scripts -->
+    <script src="assets/js/data-connector.js"></script>
+    <script src="assets/js/map.js"></script>
+    
+    <!-- Analytics charts script -->
+    <script>
+      // Improved chart initialization script
+document.addEventListener('DOMContentLoaded', function() {
+    // Make sure Chart.js is loaded
+    if (typeof Chart === 'undefined') {
+        console.error('Chart.js is not loaded. Please include the Chart.js library.');
+        // Add fallback to load Chart.js if missing
+        const chartScript = document.createElement('script');
+        chartScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js';
+        chartScript.onload = function() {
+            console.log('Chart.js loaded successfully');
+            initializeAll();
+        };
+        document.head.appendChild(chartScript);
+    } else {
+        // Chart.js is already loaded
+        console.log('Chart.js is loaded, initializing...');
+        initializeAll();
+    }
+    
+    // Main initialization function
+    function initializeAll() {
+        // Initialize animations if AOS is defined
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                mirror: false,
+                disable: 'mobile'
+            });
+        } else {
+            console.warn('AOS library not found. Animations will not work.');
+        }
+        
+        // Initialize with proper timing
+        setTimeout(function() {
+            // Initialize map
+            if (typeof initMap === 'function') {
+                console.log('Initializing map...');
+                try {
+                    initMap();
+                } catch (error) {
+                    console.error('Error initializing map:', error);
+                }
+            } else {
+                console.warn('Map initialization function not found');
+            }
+            
+            // Initialize charts with proper timing
+            setTimeout(function() {
+                try {
+                    initCharts();
+                    console.log('Charts initialized');
+                } catch (error) {
+                    console.error('Error initializing charts:', error);
+                }
+                
+                // Initialize odometer stats after charts
+                setTimeout(initOdometer, 500);
+            }, 1000);
+        }, 300);
+        
+        // Setup other page functionality
+        setupPageFunctionality();
+    }
+});
+
+// Improved chart initialization function
+function initCharts() {
+    console.log('Starting chart initialization...');
+    
+    // Validate chart containers exist
+    const typeCtx = document.getElementById('crimeTypeChart');
+    const trendCtx = document.getElementById('crimeTrendChart');
+    
+    if (!typeCtx) {
+        console.error('Crime Type Chart container not found');
+        return;
+    }
+    
+    if (!trendCtx) {
+        console.error('Crime Trend Chart container not found');
+        return;
+    }
+    
+    // Get actual crime data if available
+    let crimeData = window.crimeData || [];
+    console.log('Crime data available:', crimeData.length > 0);
+    
+    // Prepare safe data parsing
+    function safeParseData() {
+        // Prepare type data for pie chart
+        const typeLabels = ['Theft', 'Robbery', 'Assault', 'Vandalism', 'Burglary', 'Fraud', 'Harassment'];
+        let typeData = [40, 15, 12, 8, 10, 7, 8]; // Default data
+        
+        // If we have actual crime data, use it
+        if (crimeData && crimeData.length > 0) {
+            try {
+                // Compute type counts if not already done
+                if (!window.typeCounts) {
+                    window.typeCounts = {};
+                    crimeData.forEach(crime => {
+                        if (crime && crime.type) {
+                            const type = crime.type.toLowerCase();
+                            window.typeCounts[type] = (window.typeCounts[type] || 0) + 1;
+                        }
+                    });
+                }
+                
+                // Use computed data if available
+                if (window.typeCounts) {
+                    typeData = typeLabels.map(label => window.typeCounts[label.toLowerCase()] || 0);
+                    
+                    // If all values are zero, use default
+                    if (typeData.every(val => val === 0)) {
+                        typeData = [40, 15, 12, 8, 10, 7, 8]; // Fallback to default data
+                    }
+                }
+            } catch (error) {
+                console.error('Error processing crime type data:', error);
+                // Use default data on error
+                typeData = [40, 15, 12, 8, 10, 7, 8];
+            }
+        }
+        
+        return {
+            typeLabels,
+            typeData
+        };
+    }
+    
+    // Get trend data
+    function prepareTrendData() {
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        let trendData = [65, 59, 80, 81, 56, 55, 72, 78, 80, 45, 50, 80]; // Default data
+        
+        // Calculate trend data from actual crimes if available
+        if (crimeData && crimeData.length > 0) {
+            try {
+                const monthCounts = Array(12).fill(0);
+                
+                crimeData.forEach(crime => {
+                    if (crime && crime.date) {
+                        const crimeDate = new Date(crime.date);
+                        if (!isNaN(crimeDate.getTime())) {
+                            const month = crimeDate.getMonth();
+                            monthCounts[month]++;
+                        }
+                    }
+                });
+                
+                // Only use calculated data if we have some values
+                if (monthCounts.some(count => count > 0)) {
+                    trendData = monthCounts;
+                }
+            } catch (error) {
+                console.error('Error calculating trend data:', error);
+                // Use default data on error
+            }
+        }
+        
+        return {
+            months,
+            trendData
+        };
+    }
+    
+    // Create and render the charts
+    function renderCharts() {
+        // Get formatted data
+        const { typeLabels, typeData } = safeParseData();
+        const { months, trendData } = prepareTrendData();
+        
+        console.log('Rendering crime type chart...');
+        
+        // Destroy existing chart if it exists
+        if (window.typeChart) {
+            window.typeChart.destroy();
+        }
+        
+        // Create new pie chart
+        window.typeChart = new Chart(typeCtx, {
+            type: 'pie',
+            data: {
+                labels: typeLabels,
+                datasets: [{
+                    data: typeData,
+                    backgroundColor: [
+                        '#4e73df', '#e74a3b', '#f6c23e', '#36b9cc', 
+                        '#1cc88a', '#6f42c1', '#fd7e14'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            boxWidth: 10,
+                            padding: 10,
+                            font: {
+                                size: 10
+                            }
+                        }
+                    },
+                    tooltip: {
+                        enabled: true
+                    }
+                }
+            }
+        });
+        
+        console.log('Rendering crime trend chart...');
+        
+        // Destroy existing chart if it exists
+        if (window.trendChart) {
+            window.trendChart.destroy();
+        }
+        
+        // Create new line chart
+        window.trendChart = new Chart(trendCtx, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Reported Crimes',
+                    data: trendData,
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    x: {
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                }
+            }
+        });
+        
+        console.log('Charts rendered successfully');
+    }
+    
+    // Execute rendering
+    try {
+        renderCharts();
+    } catch (error) {
+        console.error('Error rendering charts:', error);
+    }
+}
+
+// Improved odometer initialization
+function initOdometer() {
+    console.log('Initializing odometer...');
+    
+    // Function to check if element is in viewport
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+    
+    const odometerElements = document.querySelectorAll('.odometer');
+    
+    if (odometerElements.length === 0) {
+        console.warn('No odometer elements found');
+        return;
+    }
+    
+    let animationTriggered = false;
+    
+    function updateOdometerValues() {
+        console.log('Updating odometer values...');
+        
+        // Set default values if no crime data available
+        const defaultTotalCrimes = 125;
+        const defaultHotSpots = 12;
+        const defaultCommonType = "Theft";
+        
+        const totalCrimesElement = document.getElementById('total-crimes');
+        const hotSpotsElement = document.getElementById('hot-spots');
+        const mostCommonElement = document.getElementById('most-common');
+        
+        if (!totalCrimesElement || !hotSpotsElement || !mostCommonElement) {
+            console.warn('Missing odometer elements');
+            return;
+        }
+        
+        // Get actual data if available
+        if (window.crimeData && window.crimeData.length > 0) {
+            // Get the total crime count
+            const totalCrimes = window.crimeData.length;
+            totalCrimesElement.setAttribute('data-count', totalCrimes);
+            
+            // Calculate hot spots (areas with multiple crimes in close proximity)
+            const hotSpots = Math.round(totalCrimes / 5);
+            hotSpotsElement.setAttribute('data-count', hotSpots);
+            
+            // Get most common crime type
+            if (window.typeCounts) {
+                let maxType = "None";
+                let maxCount = 0;
+                
+                for (const [type, count] of Object.entries(window.typeCounts)) {
+                    if (count > maxCount) {
+                        maxCount = count;
+                        maxType = type.charAt(0).toUpperCase() + type.slice(1);
+                    }
+                }
+                
+                mostCommonElement.innerText = maxType;
+            } else {
+                mostCommonElement.innerText = defaultCommonType;
+            }
+        } else {
+            // Use default values if no data available
+            totalCrimesElement.setAttribute('data-count', defaultTotalCrimes);
+            hotSpotsElement.setAttribute('data-count', defaultHotSpots);
+            mostCommonElement.innerText = defaultCommonType;
+        }
+    }
+    
+    function checkOdometerVisibility() {
+        if (!animationTriggered && odometerElements.length > 0) {
+            const statsCard = document.querySelector('.stats-card');
+            
+            if (statsCard && isInViewport(statsCard)) {
+                console.log('Odometer in viewport, triggering animation');
+                animationTriggered = true;
+                updateOdometerValues();
+                
+                // Animate odometers
+                odometerElements.forEach(element => {
+                    const targetValue = element.getAttribute('data-count');
+                    if (targetValue) {
+                        setTimeout(() => {
+                            element.innerHTML = targetValue;
+                        }, 500);
+                    }
+                });
+            }
+        }
+    }
+    
+    // Check on scroll
+    window.addEventListener('scroll', checkOdometerVisibility);
+    
+    // Initial check
+    checkOdometerVisibility();
+    
+    // Ensure it runs even if the view isn't scrolled
+    setTimeout(checkOdometerVisibility, 1000);
+}
+
+// Setup page functionality
+function setupPageFunctionality() {
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // View toggle functionality
+    const pinViewBtn = document.getElementById('pin-view-btn');
+    const heatmapViewBtn = document.getElementById('heatmap-view-btn');
+    
+    if (pinViewBtn && heatmapViewBtn) {
+        pinViewBtn.addEventListener('click', function() {
+            pinViewBtn.classList.add('active');
+            heatmapViewBtn.classList.remove('active');
+            // Call the function to switch to pin view
+            if (typeof switchToMarkerView === 'function') {
+                switchToMarkerView();
+            }
+        });
+        
+        heatmapViewBtn.addEventListener('click', function() {
+            heatmapViewBtn.classList.add('active');
+            pinViewBtn.classList.remove('active');
+            // Call the function to switch to heatmap view
+            if (typeof switchToHeatmapView === 'function') {
+                switchToHeatmapView();
+            }
+        });
+    }
+    
+    // Handle viewport changes for responsive charts
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            if (typeof Chart !== 'undefined' && Chart.instances) {
+                Chart.instances.forEach(instance => {
+                    instance.resize();
+                });
+            }
+        }, 250);
+    });
+
+    // For the Stats section with horizontal scrolling on mobile
+    const statGroup = document.querySelector('.stat-group');
+    if (statGroup && window.innerWidth <= 768) {
+        // Add visual indicator for horizontal scrolling
+        statGroup.setAttribute('data-scrollable', 'true');
+    }
+    
+    // Force resize event to ensure map and charts render properly
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            window.dispatchEvent(new Event('resize'));
+        }, 500);
+    });
+}
+    </script>
+    
+    <!-- View toggle style and script for small screens -->
+    <style>
+        @media (max-width: 575px) {
+            .view-toggle {
+                display: flex;
+                width: 100%;
+                background: var(--bg-secondary);
+                border-radius: var(--radius-md);
+                padding: 2px;
+                margin-top: 10px;
+                box-shadow: var(--shadow-sm);
+            }
+            
+            .view-btn {
+                flex: 1;
+                text-align: center;
+                padding: 10px;
+                border: none;
+                background: transparent;
+                color: var(--text-secondary);
+                border-radius: var(--radius-md);
+            }
+            
+            .view-btn.active {
+                background-color: var(--primary);
+                color: white;
+            }
+            
+            .view-text {
+                display: none;
+            }
+            
+            .view-btn i {
+                font-size: 16px;
+            }
+        }
+        
+        /* Quick links section for mobile navigation */
+        .quick-links-section {
+            margin-top: 40px;
+        }
+        
+        .quick-links-section h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .quick-link {
+            background-color: var(--bg-secondary);
+            padding: 15px 10px;
+            border-radius: var(--radius-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-primary);
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            gap: 8px;
+        }
+        
+        .quick-link i {
+            font-size: 18px;
+            color: var(--primary);
+        }
+        
+        .quick-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            color: var(--primary);
+        }
+        
+        @media (max-width: 575px) {
+            .quick-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .view-text {
+                display: inline;
+            }
+            
+            .quick-links-section {
+                display: none; /* Hide quick links on larger screens */
+            }
+        }
+        
+        /* Fix for scrollable stats on mobile */
+        [data-scrollable="true"] {
+            position: relative;
+        }
+        
+        [data-scrollable="true"]::after {
+            content: "↔";
+            position: absolute;
+            bottom: -15px;
+            right: 10px;
+            color: var(--primary);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+        
+        /* Odometer customization */
+        .odometer.odometer-auto-theme, 
+        .odometer.odometer-theme-default {
+            font-family: var(--font-family);
+            line-height: 1.1em;
+        }
+        
+        .stat-value.odometer {
+            font-weight: var(--font-weight-bold);
+        }
+    </style>
+</body>
+</html> 

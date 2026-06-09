@@ -1,0 +1,88 @@
+<header class="header" id="main-header">
+    <div class="container">
+        <div class="logo">
+            <svg class="logo-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h1>Crime Reporting</h1>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html" class="nav-link header-nav-link" id="nav-home"><i class="fas fa-home nav-icon header-nav-icon"></i><span>Home</span></a></li>
+                <li><a href="citizen-portal.html" class="nav-link header-nav-link" id="nav-report"><i class="fas fa-file-alt nav-icon header-nav-icon"></i><span>Report Crime</span></a></li>
+                <li><a href="map-visualization.html" class="nav-link header-nav-link" id="nav-map"><i class="fas fa-map-marked-alt nav-icon header-nav-icon"></i><span>Crime Map</span></a></li>
+                <li><a href="about.html" class="nav-link header-nav-link" id="nav-about"><i class="fas fa-info-circle nav-icon header-nav-icon"></i><span>About</span></a></li>
+                <li><a href="contact.html" class="nav-link header-nav-link" id="nav-contact"><i class="fas fa-envelope nav-icon header-nav-icon"></i><span>Contact</span></a></li>
+                <li><a href="admin-login.html" class="admin-link header-nav-link" id="nav-admin"><i class="fas fa-lock nav-icon header-nav-icon"></i><span>Admin</span></a></li>
+            </ul>
+        </nav>
+        <div class="header-controls">
+            <div class="theme-toggle">
+                <button id="theme-toggle-btn" aria-label="Toggle dark mode" type="button">
+                    <i class="fas fa-sun sun-icon"></i>
+                    <i class="fas fa-moon moon-icon"></i>
+                </button>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Add the enhanced header CSS -->
+<link rel="stylesheet" href="assets/css/header-enhanced.css">
+
+<script>
+    // Activate current navigation link
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the current page path
+        const currentPath = window.location.pathname;
+        const currentPage = currentPath.split('/').pop() || 'index.html';
+        
+        // Set default to home if on the root
+        let navId = 'nav-home';
+        
+        if (currentPage.includes('citizen-portal')) {
+            navId = 'nav-report';
+        } else if (currentPage.includes('map-visualization')) {
+            navId = 'nav-map';
+        } else if (currentPage.includes('about')) {
+            navId = 'nav-about';
+        } else if (currentPage.includes('contact')) {
+            navId = 'nav-contact';
+        } else if (currentPage.includes('admin')) {
+            navId = 'nav-admin';
+        }
+        
+        // Only select header navigation links with the header-specific class
+        const headerNavLinks = document.querySelectorAll('#main-header .header-nav-link');
+        
+        // First remove active class from all header links
+        headerNavLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Then activate only the matching header link
+        const activeNavLink = document.getElementById(navId);
+        if (activeNavLink && activeNavLink.classList.contains('header-nav-link')) {
+            activeNavLink.classList.add('active');
+        }
+        
+        // Initialize mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (mobileMenuBtn && navMenu) {
+            mobileMenuBtn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+            });
+        }
+    });
+</script> 

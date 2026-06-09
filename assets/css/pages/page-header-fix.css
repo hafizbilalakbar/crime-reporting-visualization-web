@@ -1,0 +1,112 @@
+/* Header Fixes for Pages subdirectory */
+
+/* Override any conflicting styles for the page navigation icons */
+.nav-icon:not(.header-nav-icon) {
+    opacity: initial !important;
+    transition: none !important;
+    font-size: initial !important;
+    margin: initial !important;
+    position: static !important;
+    transform: none !important;
+}
+
+/* Ensure only header-specific styles apply to header navigation links */
+#main-header .nav-menu a.header-nav-link {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-medium);
+    position: relative;
+    padding: var(--space-sm) var(--space-xs);
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: var(--radius-md);
+}
+
+/* Only header-nav-icon should have these styles */
+#main-header .nav-menu .nav-icon.header-nav-icon {
+    opacity: 0.8;
+    transition: all var(--transition-fast);
+    font-size: var(--font-size-md);
+    width: auto;
+}
+
+/* Ensure page content links aren't affected by header link styles */
+.faq-category-content .faq-question h3 i,
+.privacy-section i,
+.terms-section i,
+.help-section i,
+.disclaimer-section i,
+.maps-info-section i {
+    margin-right: 0.5rem;
+    color: var(--primary);
+    position: static;
+    opacity: 1;
+    font-size: inherit;
+    transition: none;
+    transform: none;
+}
+
+/* Specific override for FAQs */
+.faq-question h3 i {
+    position: static !important;
+    display: inline-block !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Fix mobile menu visibility on pages */
+@media (max-width: 768px) {
+    #main-header .mobile-menu-btn {
+        display: block !important;
+    }
+
+    #main-header .nav-menu {
+        position: fixed !important;
+    }
+    
+    #main-header .nav-menu.active {
+        right: 0 !important;
+    }
+}
+
+/* Fix for 1024px screens */
+@media (max-width: 1024px) {
+    #main-header .header-nav-icon {
+        font-size: var(--font-size-sm) !important;
+    }
+}
+
+/* Theme toggle button positioning fix */
+#main-header .theme-toggle {
+    position: relative !important;
+    order: 3 !important;
+    margin-left: 15px !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+}
+
+@media (max-width: 768px) {
+    #main-header .theme-toggle {
+        position: absolute !important;
+        right: 70px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+    }
+}
+
+/* Ensure toggle button is visible at all screen sizes */
+#main-header .theme-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 100 !important;
+}
+
+/* Fix for icon visibility on page load and window resize */
+#main-header .nav-icon.header-nav-icon,
+#main-header .theme-toggle {
+    opacity: 1 !important;
+    visibility: visible !important;
+} 

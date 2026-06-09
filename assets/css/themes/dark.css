@@ -1,0 +1,378 @@
+/* Dark Theme Stylesheet */
+
+:root {
+    /* Color Variables */
+    --primary: #6987e6;
+    --primary-dark: #3457db;
+    --primary-light: #94acef;
+    --secondary: #34495e;
+    --secondary-dark: #2c3e50;
+    --accent: #2ecc71;
+    --accent-dark: #27ae60;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --success: #2ecc71;
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --bg-accent: #252836;
+    
+    /* RGB Values for Transparency */
+    --primary-rgb: 105, 135, 230;
+    --primary-dark-rgb: 52, 87, 219;
+    --primary-light-rgb: 148, 172, 239;
+    --secondary-rgb: 52, 73, 94;
+    --accent-rgb: 46, 204, 113;
+    --danger-rgb: 231, 76, 60;
+    --warning-rgb: 243, 156, 18;
+    --success-rgb: 46, 204, 113;
+    
+    /* Text Colors */
+    --text-primary: #f5f5f5;
+    --text-secondary: #aaaaaa;
+    --text-light: #888888;
+    --text-heading: #ffffff;
+    
+    /* Other Variables */
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.6);
+    
+    /* Border Colors */
+    --border-color: #333333;
+    --border-color-light: #444444;
+    
+    /* Input Fields */
+    --input-bg: #2a2a2a;
+    --input-text: #f5f5f5;
+    --input-border: #444444;
+    --input-placeholder: #888888;
+    
+    /* Cards and Containers */
+    --card-bg: #1e1e1e;
+    --card-header: #252836;
+    
+    /* Buttons */
+    --btn-hover-brightness: 1.2;
+}
+
+/* Additional Dark Theme Specific Styles */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.header {
+    background-color: var(--bg-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.logo h1 {
+    color: var(--primary);
+}
+
+.card,
+.feature-card,
+.stat-card,
+.process-step-content,
+.testimonial-content {
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow-md);
+}
+
+.footer {
+    background-color: var(--secondary-dark);
+}
+
+/* Form Elements */
+input, textarea, select {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--input-border);
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--input-placeholder);
+}
+
+/* Fix select and dropdown colors */
+select.form-control {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--input-border);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23aaaaaa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
+select.form-control option {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+}
+
+/* Fix dropdown lists */
+.dark-theme .dropdown-menu,
+.dark-theme .autocomplete-results,
+.dark-theme .select-dropdown {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.dark-theme .dropdown-item,
+.dark-theme .autocomplete-item,
+.dark-theme .select-option {
+    color: var(--text-primary);
+}
+
+.dark-theme .dropdown-item:hover,
+.dark-theme .autocomplete-item:hover,
+.dark-theme .select-option:hover {
+    background-color: var(--bg-accent);
+}
+
+/* Map Specific Fixes */
+.dark-theme .location-map {
+    border: 1px solid var(--border-color);
+}
+
+.dark-theme .leaflet-container {
+    background: #333;
+}
+
+.dark-theme .leaflet-control-geocoder-form input {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--input-border);
+}
+
+.dark-theme .leaflet-control-geocoder-alternatives {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.dark-theme .leaflet-control-geocoder-alternatives li {
+    color: var(--text-primary);
+}
+
+.dark-theme .leaflet-control-geocoder-alternatives li:hover {
+    background-color: var(--bg-accent);
+}
+
+.dark-theme .leaflet-popup-content-wrapper,
+.dark-theme .leaflet-popup-tip {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-md);
+}
+
+/* Fix File Gallery for Dark Theme */
+.dark-theme .file-gallery {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+.dark-theme .gallery-header {
+    background-color: var(--bg-accent);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.dark-theme .file-card {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+.dark-theme .file-preview {
+    background-color: var(--bg-accent);
+}
+
+.dark-theme .file-details {
+    color: var(--text-primary);
+}
+
+.dark-theme .file-name {
+    color: var(--text-primary);
+}
+
+.dark-theme .file-controls button {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.dark-theme .file-controls button:hover {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.dark-theme .media-preview-modal .preview-modal-content {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.dark-theme .preview-header {
+    background-color: var(--bg-accent);
+    border-color: var(--border-color);
+}
+
+.dark-theme .preview-body {
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
+}
+
+.dark-theme .preview-footer {
+    background-color: var(--bg-accent);
+    border-color: var(--border-color);
+}
+
+/* Section Backgrounds */
+.section-header h2::after {
+    background-color: var(--primary);
+}
+
+/* Chart and Map Colors */
+.chart-colors {
+    --chart-primary: var(--primary);
+    --chart-secondary: var(--secondary);
+    --chart-accent: var(--accent);
+}
+
+/* Apply dark theme specific styles */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.header {
+    background-color: var(--bg-secondary);
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-menu a {
+    color: var(--text-primary);
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    color: var(--primary);
+}
+
+/* Mobile menu background in dark mode */
+@media (max-width: 768px) {
+    .nav-menu {
+        background-color: var(--bg-secondary);
+    }
+}
+
+#theme-toggle-btn {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+#theme-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Cards and content backgrounds */
+.card, .form-card, .info-card, .feature-card, 
+.testimonial-content, .stat-card, .step, 
+.terms-content, .privacy-content {
+    background-color: var(--bg-secondary);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Tables */
+table {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+th {
+    background-color: var(--bg-accent);
+}
+
+tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Code blocks */
+code, pre {
+    background-color: var(--bg-accent);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Buttons with inverted colors for better visibility */
+.btn-outline {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary);
+    color: var(--bg-primary);
+}
+
+/* Footer in dark mode */
+.footer {
+    background-color: var(--secondary);
+}
+
+/* Scrollbar styling for dark mode */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-accent);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Map and visualization elements specific to dark mode */
+.map-controls, .map-legend {
+    background-color: var(--bg-secondary);
+}
+
+.filter-control {
+    background-color: var(--bg-accent);
+    color: var(--text-primary);
+}
+
+/* Crime report card and status indicators */
+.complaint-card {
+    background-color: var(--bg-secondary);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.complaint-header {
+    background-color: var(--bg-accent);
+}
+
+/* Callout and alert styling for dark mode */
+.alert {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.alert-info {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.alert-success {
+    background-color: rgba(46, 204, 113, 0.1);
+}
+
+.alert-warning {
+    background-color: rgba(243, 156, 18, 0.1);
+}
+
+.alert-danger {
+    background-color: rgba(231, 76, 60, 0.1);
+} 

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about CrimeWatch's interactive crime mapping system - Understanding crime patterns in your community through visualization.">
+    <title>Maps Information | CrimeWatch</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/pages/maps-info.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" id="theme-style" href="../assets/css/themes/light.css">
+<link rel="stylesheet" href="../assets/css/pages/page-header-fix.css">
+    <!-- Component loader script -->
+    <script src="../assets/js/component-loader.js"></script>
+</head>
+<body>
+    <!-- Header placeholder - will be filled by component-loader.js -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-image">
+                <picture>
+                    <source media="(max-width: 600px)" srcset="https://source.unsplash.com/600x400/?map,crime">
+                    <source media="(max-width: 1024px)" srcset="https://source.unsplash.com/1024x600/?map,data">
+                    <img src="https://source.unsplash.com/1600x600/?map,analysis" alt="Crime Map Visualization" class="hero-img">
+                </picture>
+                <div class="hero-overlay">
+                    <div class="container">
+                        <h1 class="animate__animated animate__fadeIn">Map Information</h1>
+                        <p class="animate__animated animate__fadeIn animate__delay-1s">Understanding crime patterns in your community through visualization</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Introduction Section -->
+        <section class="map-intro-section">
+            <div class="container">
+                <div class="intro-content" data-aos="fade-up">
+                    <h2>Understanding Our Crime Mapping System</h2>
+                    <p>CrimeWatch's interactive crime mapping system provides a visual representation of crime incidents in your community. By analyzing patterns and trends, citizens and law enforcement can work together to create safer neighborhoods.</p>
+                    
+                    <div class="key-features">
+                        <div class="feature" data-aos="fade-up" data-aos-delay="100">
+                            <div class="feature-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Interactive Maps</h3>
+                                <p>Pan, zoom, and explore crime data with our user-friendly interface designed for all devices.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature" data-aos="fade-up" data-aos-delay="200">
+                            <div class="feature-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Heat Map Analysis</h3>
+                                <p>Identify crime hotspots with color-coded heat maps showing concentration of incidents.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature" data-aos="fade-up" data-aos-delay="300">
+                            <div class="feature-icon">
+                                <i class="fas fa-filter"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Advanced Filtering</h3>
+                                <p>Filter by crime type, date range, and status to focus on specific areas of concern.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Usage Guide Section -->
+        <section class="map-guide-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>How to Use the Crime Map</h2>
+                    <p>Follow these steps to make the most of our crime mapping tool</p>
+                </div>
+                
+                <div class="guide-steps">
+                    <div class="guide-step" data-aos="fade-up">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Accessing the Map</h3>
+                            <p>Navigate to the "Crime Map" section from the main navigation menu. The map will load centered on your current location (if location access is granted) or a default central area.</p>
+                            <div class="step-image">
+                                <img src="https://placehold.co/600x400?text=Accessing+the+Map+Demo&font=roboto" alt="Accessing the crime map">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="guide-step" data-aos="fade-up" data-aos-delay="100">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Navigating the Map</h3>
+                            <p>Use the zoom controls to zoom in/out or drag to pan across the map. Click on markers to view details about specific incidents including type, date, time, and status.</p>
+                            <div class="step-image">
+                                <img src="https://placehold.co/600x400?text=Navigating+the+Map+Demo&font=roboto" alt="Navigating the crime map">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="guide-step" data-aos="fade-up" data-aos-delay="200">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Applying Filters</h3>
+                            <p>Use the filter controls to narrow down data by crime type (theft, assault, vandalism, etc.), time period (day, week, month, year), and status (verified, pending, resolved).</p>
+                            <div class="step-image">
+                                <img src="https://placehold.co/600x400?text=Applying+Filters+Demo&font=roboto" alt="Applying filters">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="guide-step" data-aos="fade-up" data-aos-delay="300">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Switching Views</h3>
+                            <p>Toggle between pin view (individual markers) and heatmap view (density visualization) using the view toggle buttons. Heatmaps are excellent for identifying high-concentration areas.</p>
+                            <div class="step-image">
+                                <img src="https://placehold.co/600x400?text=Switching+Views+Demo&font=roboto" alt="Switching map views">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="guide-step" data-aos="fade-up" data-aos-delay="400">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Exporting Data</h3>
+                            <p>Use the export tools to download crime data as CSV, share a map screenshot, or generate a report of your selected area and filters for community meetings or personal reference.</p>
+                            <div class="step-image">
+                                <img src="https://placehold.co/600x400?text=Exporting+Data+Demo&font=roboto" alt="Exporting map data">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Legend Section -->
+        <section class="map-legend-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Map Legend & Icons</h2>
+                    <p>Understanding the symbols and colors on our crime map</p>
+                </div>
+                
+                <div class="legend-container" data-aos="fade-up">
+                    <div class="legend-group">
+                        <h3>Crime Type Icons</h3>
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <div class="legend-icon crime-theft">
+                                    <i class="fas fa-shopping-bag"></i>
+                                </div>
+                                <div class="legend-text">Theft/Burglary</div>
+                            </div>
+                            
+                            <div class="legend-item">
+                                <div class="legend-icon crime-assault">
+                                    <i class="fas fa-user-injured"></i>
+                                </div>
+                                <div class="legend-text">Assault</div>
+                            </div>
+                            
+                            <div class="legend-item">
+                                <div class="legend-icon crime-vandalism">
+                                    <i class="fas fa-spray-can"></i>
+                                </div>
+                                <div class="legend-text">Vandalism</div>
+                            </div>
+                            
+                            <div class="legend-item">
+                                <div class="legend-icon crime-vehicle">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <div class="legend-text">Vehicle Crime</div>
+                            </div>
+                            
+                            <div class="legend-item">
+                                <div class="legend-icon crime-drug">
+                                    <i class="fas fa-pills"></i>
+                                </div>
+                                <div class="legend-text">Drug Activity</div>
+                            </div>
+                            
+                            <div class="legend-item">
+                                <div class="legend-icon crime-other">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <div class="legend-text">Other</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="legend-group">
+                        <h3>Status Indicators</h3>
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <div class="legend-status status-verified"></div>
+                                <div class="legend-text">Verified</div>
+                            </div>
+                            
+                            <div class="legend-item">
+                                <div class="legend-status status-pending"></div>
+                                <div class="legend-text">Pending Review</div>
+                            </div>
+                            
+                            <div class="legend-item">
+                                <div class="legend-status status-resolved"></div>
+                                <div class="legend-text">Resolved</div>
+                            </div>
+                            
+                            <div class="legend-item">
+                                <div class="legend-status status-rejected"></div>
+                                <div class="legend-text">Rejected</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="legend-group">
+                        <h3>Heatmap Colors</h3>
+                        <div class="heatmap-gradient">
+                            <div class="gradient-labels">
+                                <span>Low</span>
+                                <span>Medium</span>
+                                <span>High</span>
+                            </div>
+                        </div>
+                        <p class="legend-description">The heatmap uses a color gradient from blue (low concentration) through green and yellow to red (high concentration) to indicate density of crime reports in an area.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Sources Section -->
+        <section class="data-sources-section" data-aos="fade-up">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Data Sources & Privacy</h2>
+                    <p>Understanding where our data comes from and how we protect privacy</p>
+                </div>
+                
+                <div class="data-content">
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Sources of Information</h3>
+                        <p>CrimeWatch maps display data from multiple verified sources:</p>
+                        <ul>
+                            <li>Citizen-submitted reports (verified by our team)</li>
+                            <li>Law enforcement agency data (where partnerships exist)</li>
+                            <li>Public crime records and statistics</li>
+                            <li>Community watch group reports (verified)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Privacy Protection</h3>
+                        <p>We take privacy seriously in our crime mapping:</p>
+                        <ul>
+                            <li>Exact addresses are never displayed, only general vicinity</li>
+                            <li>Personal information about victims or reporters is never shown</li>
+                            <li>All data is anonymized before being added to the map</li>
+                            <li>Verification process ensures sensitive details are removed</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3>Data Updates</h3>
+                        <p>Understanding our update cycle:</p>
+                        <ul>
+                            <li>New verified reports are added within 24 hours</li>
+                            <li>Official data is updated weekly where available</li>
+                            <li>Historical data is maintained for 12 months</li>
+                            <li>Real-time updates available in select partner communities</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Feedback Section -->
+        <section class="feedback-section" data-aos="fade-up">
+            <div class="container">
+                <div class="feedback-card">
+                    <div class="feedback-content">
+                        <h2>Help Us Improve</h2>
+                        <p>We're constantly working to improve our crime mapping system. Have suggestions, found issues, or want to request new features?</p>
+                        <a href="../contact.html" class="btn btn-primary">Send Feedback</a>
+                    </div>
+                    <div class="feedback-image">
+                        <img src="/assets/img/box-images/box-img-2.jpg" alt="Help improve our map">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scroll to Top Button -->
+        <button id="scroll-to-top" aria-label="Scroll to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </main>
+
+    <!-- Footer placeholder - will be filled by component-loader.js -->
+    <div id="footer-placeholder"></div>
+
+    <!-- JavaScript Files -->
+    <script src="../assets/js/theme-toggle.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="../assets/js/pages/maps-info.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+</html> 

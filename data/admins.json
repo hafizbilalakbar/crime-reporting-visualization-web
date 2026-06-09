@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "password": "5f4dcc3b5aa765d61d8327deb882cf99", 
+    "name": "Administrator",
+    "role": "super_admin",
+    "email": "admin@crimewatch.org",
+    "created_at": "2023-01-01T00:00:00.000Z",
+    "last_login": "2023-06-15T14:30:00.000Z"
+  },
+  {
+    "id": 2,
+    "username": "officer_smith",
+    "password": "5f4dcc3b5aa765d61d8327deb882cf99",
+    "name": "Officer Smith",
+    "role": "report_reviewer",
+    "email": "smith@crimewatch.org",
+    "created_at": "2023-01-15T00:00:00.000Z",
+    "last_login": "2023-06-14T09:15:00.000Z"
+  },
+  {
+    "id": 3,
+    "username": "analyst_jones",
+    "password": "5f4dcc3b5aa765d61d8327deb882cf99",
+    "name": "Data Analyst Jones",
+    "role": "data_analyst",
+    "email": "jones@crimewatch.org",
+    "created_at": "2023-02-01T00:00:00.000Z",
+    "last_login": "2023-06-15T10:45:00.000Z"
+  }
+] 
